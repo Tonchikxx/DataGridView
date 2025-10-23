@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -41,10 +42,12 @@
             numericUpDownFuelVolume = new NumericUpDown();
             numericUpDownCostPerMinute = new NumericUpDown();
             buttonSave = new Button();
+            errorProvider = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)numericUpDownMileage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownFuelConsumption).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownFuelVolume).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCostPerMinute).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -154,6 +157,11 @@
             buttonSave.UseVisualStyleBackColor = true;
             buttonSave.Click += buttonSave_Click;
             // 
+            // errorProvider
+            // 
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider.ContainerControl = this;
+            // 
             // AddCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -178,6 +186,7 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDownFuelConsumption).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownFuelVolume).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCostPerMinute).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -197,5 +206,6 @@
         private NumericUpDown numericUpDownFuelVolume;
         private NumericUpDown numericUpDownCostPerMinute;
         private Button buttonSave;
+        private ErrorProvider errorProvider;
     }
 }

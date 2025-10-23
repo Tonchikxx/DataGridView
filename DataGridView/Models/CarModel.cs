@@ -16,6 +16,7 @@ namespace DataGridView.Models
         /// <summary>
         /// Марка автомобиля
         /// </summary>
+        [Display(Name = "Марка автомобиля")]
         [Required(ErrorMessage = "{0} обязательна для выбора")]
         [Range(1, 3, ErrorMessage = "{0} должна быть выбрана из списка")]
         public CarName CarName { get; set; }
@@ -72,8 +73,6 @@ namespace DataGridView.Models
         {
             get
             {
-                if (FuelConsumption <= 0)
-                    return 0;
                 return Math.Round(FuelVolume / FuelConsumption, 2);
             }
         }

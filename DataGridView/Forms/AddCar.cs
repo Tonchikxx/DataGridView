@@ -1,4 +1,3 @@
-using DataGridView.Classes;
 using DataGridView.Infrastructure;
 using DataGridView.Models;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +8,6 @@ namespace DataGridView.Forms
     public partial class AddCar : Form
     {
         private readonly CarModel targetCar;
-        private readonly ErrorProvider errorProvider = new ErrorProvider();
 
         public AddCar(CarModel? sourceCar = null)
         {
@@ -37,14 +35,9 @@ namespace DataGridView.Forms
             numericUpDownFuelVolume.AddBinding(x => x.Value, targetCar, x => x.FuelVolume);
             numericUpDownCostPerMinute.AddBinding(x => x.Value, targetCar, x => x.CostPerMinute);
 
-            ConfigureErrorProvider();
         }
 
-        private void ConfigureErrorProvider()
-        {
-            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-            errorProvider.ContainerControl = this;
-        }
+
 
         /// <summary>
         /// Текущий авто

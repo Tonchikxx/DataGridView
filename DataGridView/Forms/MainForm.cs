@@ -1,4 +1,3 @@
-using DataGridView.Classes;
 using DataGridView.Forms;
 using DataGridView.Models;
 
@@ -108,7 +107,6 @@ namespace DataGridView
             if (add.ShowDialog(this) == DialogResult.OK)
             {
                 items.Add(add.CurrentCar);
-                bindingSource.ResetBindings(false);
                 MessageBox.Show("Автомобиль успешно добавлен!");
                 OnUpdate();
             }
