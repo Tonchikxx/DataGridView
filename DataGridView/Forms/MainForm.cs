@@ -99,7 +99,7 @@ namespace DataGridView
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки Добавить товар
+        /// Обработчик нажатия кнопки Добавить
         /// </summary>
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
@@ -115,7 +115,7 @@ namespace DataGridView
         }
 
         /// <summary>
-        /// Метод обновоения общих данных о товарах
+        /// Метод обновоения общих данных
         /// </summary>
         private void SetStatistic()
         {
@@ -125,7 +125,7 @@ namespace DataGridView
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки Редактировать товар
+        /// Обработчик нажатия кнопки Редактировать
         /// </summary>
         private void toolStripButtonEdit_Click(object sender, EventArgs e)
         {
@@ -153,7 +153,7 @@ namespace DataGridView
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки Удалить товар
+        /// Обработчик нажатия кнопки Удалить
         /// </summary>
         private void toolStripButtonDelete_Click(object sender, EventArgs e)
         {
