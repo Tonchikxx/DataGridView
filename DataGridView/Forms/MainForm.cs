@@ -18,7 +18,7 @@ namespace DataGridView
             {
                 Id = Guid.NewGuid(),
                 CarName = CarName.Hyundai,
-                GosNumber = "УУ777С",
+                GosNumber = "РЈРЈ777РЎ",
                 Mileage = 100,
                 FuelConsumption = 50,
                 CostPerMinute = 100
@@ -29,7 +29,7 @@ namespace DataGridView
             {
                 Id = Guid.NewGuid(),
                 CarName = CarName.Lada,
-                GosNumber = "ПР678Н",
+                GosNumber = "РџР 678Рќ",
                 Mileage = 300,
                 FuelConsumption = 50,
                 FuelVolume = 5,
@@ -41,7 +41,7 @@ namespace DataGridView
             {
                 Id = Guid.NewGuid(),
                 CarName = CarName.Mitsubishi,
-                GosNumber = "АО666О",
+                GosNumber = "РђРћ666Рћ",
                 Mileage = 150,
                 FuelConsumption = 40,
                 FuelVolume = 100,
@@ -51,24 +51,24 @@ namespace DataGridView
 
             SetStatistic();
 
-            СarNameCol.DataPropertyName = nameof(CarModel.CarName); 
+            РЎarNameCol.DataPropertyName = nameof(CarModel.CarName); 
             GosNumber.DataPropertyName = nameof(CarModel.GosNumber);
             Mileage.DataPropertyName = nameof(CarModel.Mileage);
-            FuelСonsumption.DataPropertyName = nameof(CarModel.FuelConsumption);
+            FuelРЎonsumption.DataPropertyName = nameof(CarModel.FuelConsumption);
             FuelVolume.DataPropertyName = nameof(CarModel.FuelVolume);
             CostPerMinute.DataPropertyName = nameof(CarModel.CostPerMinute);
             FuelReserveHours.DataPropertyName = nameof(CarModel.FuelReserveHours);
             SumRent.DataPropertyName = nameof(CarModel.RentAmount);
 
             dataGridView.AutoGenerateColumns = false;
-            СarNameCol.DataSource = Enum.GetValues(typeof(CarName));
+            РЎarNameCol.DataSource = Enum.GetValues(typeof(CarName));
 
             bindingSource.DataSource = items;
             dataGridView.DataSource = bindingSource;
         }
 
         /// <summary>
-        /// Обработчик события форматирования ячеек DataGridView
+        /// РћР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёСЏ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёСЏ СЏС‡РµРµРє DataGridView
         /// </summary>
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -83,13 +83,13 @@ namespace DataGridView
                 switch (car.CarName)
                 {
                     case CarName.Lada:
-                        e.Value = "Лада Веста";
+                        e.Value = "Р›Р°РґР° Р’РµСЃС‚Р°";
                         break;
                     case CarName.Mitsubishi:
-                        e.Value = "Митсубиши";
+                        e.Value = "РњРёС‚СЃСѓР±РёС€Рё";
                         break;
                     case CarName.Hyundai:
-                        e.Value = "Хёндай Крета";
+                        e.Value = "РҐС‘РЅРґР°Р№ РљСЂРµС‚Р°";
                         break;
                     default:
                         e.Value = CarName.Unknow;
@@ -99,7 +99,7 @@ namespace DataGridView
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки Добавить
+        /// РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё Р”РѕР±Р°РІРёС‚СЊ
         /// </summary>
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
@@ -109,29 +109,29 @@ namespace DataGridView
             {
                 items.Add(add.CurrentCar);
                 bindingSource.ResetBindings(false);
-                MessageBox.Show("Автомобиль успешно добавлен!");
+                MessageBox.Show("РђРІС‚РѕРјРѕР±РёР»СЊ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ!");
                 OnUpdate();
             }
         }
 
         /// <summary>
-        /// Метод обновоения общих данных
+        /// РњРµС‚РѕРґ РѕР±РЅРѕРІРѕРµРЅРёСЏ РѕР±С‰РёС… РґР°РЅРЅС‹С…
         /// </summary>
         private void SetStatistic()
         {
             var lowFuelCars = items.Count(car => car.FuelVolume < 7);
-            toolStripStatusLabelLowAmount.Text = $"Автомобили с критически низким уровнем запаса хода: {lowFuelCars}";
-            toolStripStatusLabelAmount.Text = $"Количество автомобилей: {items.Count}";
+            toolStripStatusLabelLowAmount.Text = $"РђРІС‚РѕРјРѕР±РёР»Рё СЃ РєСЂРёС‚РёС‡РµСЃРєРё РЅРёР·РєРёРј СѓСЂРѕРІРЅРµРј Р·Р°РїР°СЃР° С…РѕРґР°: {lowFuelCars}";
+            toolStripStatusLabelAmount.Text = $"РљРѕР»РёС‡РµСЃС‚РІРѕ Р°РІС‚РѕРјРѕР±РёР»РµР№: {items.Count}";
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки Редактировать
+        /// РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ
         /// </summary>
         private void toolStripButtonEdit_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Выберите автомобиль для редактирования!", "Внимание",
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ Р°РІС‚РѕРјРѕР±РёР»СЊ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ!", "Р’РЅРёРјР°РЅРёРµ",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -146,20 +146,20 @@ namespace DataGridView
                 {
                     items[selectedIndex] = editForm.CurrentCar;
                     OnUpdate();
-                    MessageBox.Show("Автомобиль успешно обновлен!", "Успех",
+                    MessageBox.Show("РђРІС‚РѕРјРѕР±РёР»СЊ СѓСЃРїРµС€РЅРѕ РѕР±РЅРѕРІР»РµРЅ!", "РЈСЃРїРµС…",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки Удалить
+        /// РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё РЈРґР°Р»РёС‚СЊ
         /// </summary>
         private void toolStripButtonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Выберите автомобиль для удаления!", "Внимание",
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ Р°РІС‚РѕРјРѕР±РёР»СЊ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ!", "Р’РЅРёРјР°РЅРёРµ",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -168,8 +168,8 @@ namespace DataGridView
             var target = items.FirstOrDefault(x => x.Id == car.Id);
 
             if (target != null &&
-                MessageBox.Show($"Вы действительно желаете удалить автомобиль с номерами '{target.GosNumber}'?",
-                "Удаление продукта",
+                MessageBox.Show($"Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ Р¶РµР»Р°РµС‚Рµ СѓРґР°Р»РёС‚СЊ Р°РІС‚РѕРјРѕР±РёР»СЊ СЃ РЅРѕРјРµСЂР°РјРё '{target.GosNumber}'?",
+                "РЈРґР°Р»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р°",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -179,7 +179,7 @@ namespace DataGridView
         }
 
         /// <summary>
-        /// Метод обновления всех данных на форме
+        /// РњРµС‚РѕРґ РѕР±РЅРѕРІР»РµРЅРёСЏ РІСЃРµС… РґР°РЅРЅС‹С… РЅР° С„РѕСЂРјРµ
         /// </summary>
         public void OnUpdate()
         {

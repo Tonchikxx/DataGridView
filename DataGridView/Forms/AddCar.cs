@@ -1,4 +1,4 @@
-﻿using DataGridView.Classes;
+using DataGridView.Classes;
 using DataGridView.Infrastructure;
 using DataGridView.Models;
 using System.ComponentModel.DataAnnotations;
