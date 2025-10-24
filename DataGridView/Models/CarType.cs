@@ -3,7 +3,7 @@
     /// <summary>
     /// Марки машин
     /// </summary>
-    public enum CarName : byte
+    public enum CarType : byte
     {
         /// <summary>
         /// Неизвестно

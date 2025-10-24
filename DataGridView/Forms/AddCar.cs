@@ -5,10 +5,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataGridView.Forms
 {
+    /// <summary>
+    /// Класс формы добавления машин
+    /// </summary>
     public partial class AddCar : Form
     {
         private readonly CarModel targetCar;
 
+        /// <summary>
+        /// Конструктор класса формы добавления машин
+        /// </summary>
+        /// <param name="sourceCar">Данные о уже существующей машине</param>
         public AddCar(CarModel? sourceCar = null)
         {
             InitializeComponent();
@@ -26,13 +33,13 @@ namespace DataGridView.Forms
                 Text = "Добавить Авто";
             }
 
-            comboBoxCarName.DataSource = Enum.GetValues(typeof(CarName));
+            comboBoxCarName.DataSource = Enum.GetValues(typeof(CarType));
 
-            comboBoxCarName.AddBinding(x => x.SelectedItem!, targetCar, x => x.CarName);
-            textBoxGosNumber.AddBinding(x => x.Text, targetCar, x => x.GosNumber);
-            numericUpDownMileage.AddBinding(x => x.Value, targetCar, x => x.Mileage);
-            numericUpDownFuelConsumption.AddBinding(x => x.Value, targetCar, x => x.FuelConsumption);
-            numericUpDownFuelVolume.AddBinding(x => x.Value, targetCar, x => x.FuelVolume);
+            comboBoxCarName.AddBinding(x => x.SelectedItem!, targetCar, x => x.CarName, errorProvider);
+            textBoxGosNumber.AddBinding(x => x.Text, targetCar, x => x.GosNumber, errorProvider);
+            numericUpDownMileage.AddBinding(x => x.Value, targetCar, x => x.Mileage, errorProvider);
+            numericUpDownFuelConsumption.AddBinding(x => x.Value, targetCar, x => x.FuelConsumption, errorProvider);
+            numericUpDownFuelVolume.AddBinding(x => x.Value, targetCar, x => x.FuelVolume, errorProvider);
             numericUpDownCostPerMinute.AddBinding(x => x.Value, targetCar, x => x.CostPerMinute);
 
         }

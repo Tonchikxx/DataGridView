@@ -3,11 +3,17 @@ using DataGridView.Models;
 
 namespace DataGridView
 {
+    /// <summary>
+    /// Класс главной формы
+    /// </summary>
     public partial class MainForm : Form
     {
         private readonly List<CarModel> items;
         private readonly BindingSource bindingSource = new();
 
+        /// <summary>
+        /// Констуркутор класса главной формы
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -16,7 +22,7 @@ namespace DataGridView
             items.Add(new CarModel
             {
                 Id = Guid.NewGuid(),
-                CarName = CarName.Hyundai,
+                CarName = CarType.Hyundai,
                 GosNumber = "УУ777С",
                 Mileage = 100,
                 FuelConsumption = 50,
@@ -27,7 +33,7 @@ namespace DataGridView
             items.Add(new CarModel
             {
                 Id = Guid.NewGuid(),
-                CarName = CarName.Lada,
+                CarName = CarType.Lada,
                 GosNumber = "ПР678Н",
                 Mileage = 300,
                 FuelConsumption = 50,
@@ -39,7 +45,7 @@ namespace DataGridView
             items.Add(new CarModel
             {
                 Id = Guid.NewGuid(),
-                CarName = CarName.Mitsubishi,
+                CarName = CarType.Mitsubishi,
                 GosNumber = "АО666О",
                 Mileage = 150,
                 FuelConsumption = 40,
@@ -60,7 +66,7 @@ namespace DataGridView
             SumRent.DataPropertyName = nameof(CarModel.RentAmount);
 
             dataGridView.AutoGenerateColumns = false;
-            СarNameCol.DataSource = Enum.GetValues(typeof(CarName));
+            СarNameCol.DataSource = Enum.GetValues(typeof(CarType));
 
             bindingSource.DataSource = items;
             dataGridView.DataSource = bindingSource;
@@ -81,17 +87,17 @@ namespace DataGridView
             {
                 switch (car.CarName)
                 {
-                    case CarName.Lada:
+                    case CarType.Lada:
                         e.Value = "Лада Веста";
                         break;
-                    case CarName.Mitsubishi:
+                    case CarType.Mitsubishi:
                         e.Value = "Митсубиши";
                         break;
-                    case CarName.Hyundai:
+                    case CarType.Hyundai:
                         e.Value = "Хёндай Крета";
                         break;
                     default:
-                        e.Value = CarName.Unknow;
+                        e.Value = CarType.Unknow;
                         break;
                 }
             }

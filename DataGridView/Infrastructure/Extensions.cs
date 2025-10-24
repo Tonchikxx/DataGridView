@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace DataGridView.Infrastructure
 {
@@ -33,65 +34,36 @@ namespace DataGridView.Infrastructure
 
             if (errorProvider != null)
             {
-                AddValidation(control, source, sourcePropName, errorProvider);
-            }
+                var sourcePropertyInfo = source.GetType().GetProperty(sourcePropName);
+                var validationAttributes = sourcePropertyInfo?.GetCustomAttributes<ValidationAttribute>();
 
+                if (validationAttributes?.Any() == true)
+                {
+                    control.Validating += (_, _) =>
+                    {
+                        var context = new ValidationContext(source)
+                        {
+                            MemberName = sourcePropName,
+                        };
+                        var results = new List<ValidationResult>();
+
+                        errorProvider.SetError(control, string.Empty);
+
+                        var propertyValue = sourcePropertyInfo?.GetValue(source);
+                        bool isValid = Validator.TryValidateProperty(propertyValue, context, results);
+
+                        if (!isValid)
+                        {
+                            foreach (var error in results)
+                            {
+                                errorProvider.SetError(control, error.ErrorMessage);
+                            }
+                        }
+                    };
+                }
+            }
     
         }
-
-        /// <summary>
-        /// Добавление валидации к контролу
-        /// </summary>
-        private static void AddValidation<TControl, TSource>(
-            TControl control,
-            TSource source,
-            string sourcePropertyName,
-            ErrorProvider errorProvider)
-            where TControl : Control
-            where TSource : class
-        {
-            var sourcePropertyInfo = source.GetType().GetProperty(sourcePropertyName);
-            if (sourcePropertyInfo == null)
-                return;
-
-            control.Validating += (sender, e) =>
-            {
-                ValidateControl(control, source, sourcePropertyName, errorProvider);
-            };
-        }
-
-        /// <summary>
-        /// Валидация конкретного контрола
-        /// </summary>
-        private static void ValidateControl<TControl, TSource>(
-            TControl control,
-            TSource source,
-            string sourcePropertyName,
-            ErrorProvider errorProvider)
-            where TControl : Control
-            where TSource : class
-        {
-            var sourcePropertyInfo = source.GetType().GetProperty(sourcePropertyName);
-            if (sourcePropertyInfo == null)
-                return;
-
-            var context = new ValidationContext(source) { MemberName = sourcePropertyName };
-            var results = new List<ValidationResult>();
-
-            var propertyValue = sourcePropertyInfo.GetValue(source);
-
-            bool isValid = Validator.TryValidateProperty(propertyValue, context, results);
-
-            if (!isValid && results.Count > 0)
-            {
-                errorProvider.SetError(control, results[0].ErrorMessage);
-            }
-            else
-            {
-                errorProvider.SetError(control, string.Empty);
-            }
-        }
-
         /// <summary>
         /// Метод извлечения имени свойства из лямбда-выражения
         /// </summary>

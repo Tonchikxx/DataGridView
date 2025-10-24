@@ -51,11 +51,5 @@
         /// Максимальная стоимость аренды за минуту (руб/мин)
         /// </summary>
         public const double RentCostPerMinuteMax = 1000;
-
-
-        /// <summary>
-        /// Критический уровень топлива для предупреждений (л)
-        /// </summary>
-        public const double CriticalFuelLevel = 7;
     }
 }

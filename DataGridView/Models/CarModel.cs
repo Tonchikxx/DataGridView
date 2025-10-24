@@ -19,7 +19,7 @@ namespace DataGridView.Models
         [Display(Name = "Марка автомобиля")]
         [Required(ErrorMessage = "{0} обязательна для выбора")]
         [Range(1, 3, ErrorMessage = "{0} должна быть выбрана из списка")]
-        public CarName CarName { get; set; }
+        public CarType CarName { get; set; }
 
         /// <summary>
         /// Государственный номер
