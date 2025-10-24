@@ -118,6 +118,7 @@
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(0, 25);
             dataGridView.Name = "dataGridView";
+            dataGridView.ReadOnly = true;
             dataGridView.Size = new Size(843, 403);
             dataGridView.TabIndex = 2;
             dataGridView.CellFormatting += dataGridView_CellFormatting;
@@ -126,41 +127,49 @@
             // 
             СarNameCol.HeaderText = "Марка автомобиля";
             СarNameCol.Name = "СarNameCol";
+            СarNameCol.ReadOnly = true;
             // 
             // GosNumber
             // 
             GosNumber.HeaderText = "Гос. номер";
             GosNumber.Name = "GosNumber";
+            GosNumber.ReadOnly = true;
             // 
             // Mileage
             // 
             Mileage.HeaderText = "Пробег";
             Mileage.Name = "Mileage";
+            Mileage.ReadOnly = true;
             // 
             // FuelСonsumption
             // 
             FuelСonsumption.HeaderText = "Расход тплива";
             FuelСonsumption.Name = "FuelСonsumption";
+            FuelСonsumption.ReadOnly = true;
             // 
             // FuelVolume
             // 
             FuelVolume.HeaderText = "Объём топлива";
             FuelVolume.Name = "FuelVolume";
+            FuelVolume.ReadOnly = true;
             // 
             // CostPerMinute
             // 
             CostPerMinute.HeaderText = "Стоимость аренды (за минуту)";
             CostPerMinute.Name = "CostPerMinute";
+            CostPerMinute.ReadOnly = true;
             // 
             // FuelReserveHours
             // 
             FuelReserveHours.HeaderText = "Запас хода топлива";
             FuelReserveHours.Name = "FuelReserveHours";
+            FuelReserveHours.ReadOnly = true;
             // 
             // SumRent
             // 
             SumRent.HeaderText = "Сумма аренды";
             SumRent.Name = "SumRent";
+            SumRent.ReadOnly = true;
             // 
             // MainForm
             // 
