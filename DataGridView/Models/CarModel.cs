@@ -64,33 +64,7 @@ namespace DataGridView.Models
         [Range(AppConstants.RentCostPerMinuteMin, AppConstants.RentCostPerMinuteMax,
             ErrorMessage = "{0} должна быть в диапазоне от {1} до {2} руб/мин")]
         public double CostPerMinute { get; set; }
-
-        /// <summary>
-        /// Запас хода по топливу (часы)
-        /// </summary>
-        [Display(Name = "Запас хода по топливу")]
-        public double FuelReserveHours
-        {
-            get
-            {
-                return Math.Round(FuelVolume / FuelConsumption, 2);
-            }
-        }
-
-        /// <summary>
-        /// Сумма аренды до полного расхода топлива
-        /// </summary>
-        [Display(Name = "Сумма аренды")]
-        public double RentAmount
-        {
-            get
-            {
-                if (FuelConsumption <= 0)
-                    return 0;
-                return Math.Round(FuelReserveHours * 60 * CostPerMinute, 2);
-            }
-        }
-
+        
         /// <summary>
         /// Создает копию объекта CarModel
         /// </summary>

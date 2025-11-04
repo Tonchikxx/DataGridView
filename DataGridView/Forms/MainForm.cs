@@ -62,8 +62,6 @@ namespace DataGridView
             FuelСonsumption.DataPropertyName = nameof(CarModel.FuelConsumption);
             FuelVolume.DataPropertyName = nameof(CarModel.FuelVolume);
             CostPerMinute.DataPropertyName = nameof(CarModel.CostPerMinute);
-            FuelReserveHours.DataPropertyName = nameof(CarModel.FuelReserveHours);
-            SumRent.DataPropertyName = nameof(CarModel.RentAmount);
 
             dataGridView.AutoGenerateColumns = false;
             СarNameCol.DataSource = Enum.GetValues(typeof(CarType));
@@ -100,6 +98,18 @@ namespace DataGridView
                         e.Value = CarType.Unknow;
                         break;
                 }
+            }
+
+            if (col == FuelReserveHours)
+            {
+
+                    e.Value = Math.Round(car.FuelVolume / car.FuelConsumption, 2);
+            }
+
+            if (col == SumRent)
+            {
+                    double fuelReserveHours = car.FuelVolume / car.FuelConsumption;
+                    e.Value = Math.Round(fuelReserveHours * 60 * car.CostPerMinute, 2);
             }
         }
 
