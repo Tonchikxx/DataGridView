@@ -1,5 +1,8 @@
 ﻿namespace DataGridView.Classes
 {
+    /// <summary>
+    /// Класс констант
+    /// </summary>
     internal class AppConstants
     {
         /// <summary>

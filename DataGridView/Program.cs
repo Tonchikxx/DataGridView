@@ -1,15 +1,18 @@
 namespace DataGridView
 {
+    /// <summary>
+    /// Класс входа в программу
+    /// </summary>
     internal static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Application.Run(new Forms.MainForm());
         }
     }
 }

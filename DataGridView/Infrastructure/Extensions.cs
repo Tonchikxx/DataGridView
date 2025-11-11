@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace DataGridView.Infrastructure
 {
+    /// <summary>
+    /// Класс расширений для работы с привязкой данных и валидацией
+    /// </summary>
     public static class Extensions
     {
         /// <summary>
@@ -50,7 +53,7 @@ namespace DataGridView.Infrastructure
                         errorProvider.SetError(control, string.Empty);
 
                         var propertyValue = sourcePropertyInfo?.GetValue(source);
-                        bool isValid = Validator.TryValidateProperty(propertyValue, context, results);
+                        var isValid = Validator.TryValidateProperty(propertyValue, context, results);
 
                         if (!isValid)
                         {

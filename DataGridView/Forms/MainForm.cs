@@ -1,7 +1,6 @@
-using DataGridView.Forms;
 using DataGridView.Models;
 
-namespace DataGridView
+namespace DataGridView.Forms
 {
     /// <summary>
     /// Класс главной формы

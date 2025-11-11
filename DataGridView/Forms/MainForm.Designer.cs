@@ -1,4 +1,4 @@
-﻿namespace DataGridView
+﻿namespace DataGridView.Forms
 {
     partial class MainForm
     {

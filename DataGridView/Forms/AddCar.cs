@@ -13,6 +13,11 @@ namespace DataGridView.Forms
         private readonly CarModel targetCar;
 
         /// <summary>
+        /// Текущий авто
+        /// </summary>
+        public CarModel CurrentCar => targetCar;
+
+        /// <summary>
         /// Конструктор класса формы добавления машин
         /// </summary>
         /// <param name="sourceCar">Данные о уже существующей машине</param>
@@ -43,14 +48,6 @@ namespace DataGridView.Forms
             numericUpDownCostPerMinute.AddBinding(x => x.Value, targetCar, x => x.CostPerMinute);
 
         }
-
-
-
-        /// <summary>
-        /// Текущий авто
-        /// </summary>
-        public CarModel CurrentCar => targetCar;
-
 
         /// <summary>
         /// Метод обработки клика кнопки "Добавить" или "Сохранить"
