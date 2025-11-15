@@ -1,7 +1,7 @@
 namespace DataGridView
 {
     /// <summary>
-    /// Класс входа в программу
+    /// РљР»Р°СЃСЃ РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ
     /// </summary>
     internal static class Program
     {
