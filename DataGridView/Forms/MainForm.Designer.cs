@@ -181,6 +181,7 @@
             Controls.Add(statusStrip);
             Name = "MainForm";
             Text = "Прокат автомобиля";
+            Load += MainForm_Load;
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             toolStrip.ResumeLayout(false);

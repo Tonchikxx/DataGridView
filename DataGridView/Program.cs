@@ -1,3 +1,7 @@
+using DataGridView.Forms;
+using DataGridView.Services;
+using DataGrisView.Services.Contracts;
+
 namespace DataGridView
 {
     /// <summary>
@@ -12,7 +16,8 @@ namespace DataGridView
         public static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Forms.MainForm());
+            ICarService carServices = new InMemoryStorage();
+            Application.Run(new MainForm(carServices));
         }
     }
 }

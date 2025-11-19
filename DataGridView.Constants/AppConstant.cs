@@ -1,9 +1,9 @@
-﻿namespace DataGridView.Classes
+﻿namespace DataGridView.Constants
 {
     /// <summary>
     /// Класс констант
     /// </summary>
-    internal class AppConstants
+    public class AppConstants
     {
         /// <summary>
         /// Минимальная длина государственного номера автомобиля

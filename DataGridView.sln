@@ -1,9 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView", "DataGridView\DataGridView.csproj", "{B6042A5B-59EC-43A1-B8A4-645DD102A9DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.App", "DataGridView\DataGridView.App.csproj", "{B6042A5B-59EC-43A1-B8A4-645DD102A9DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.Entities", "DataGridView.Entities\DataGridView.Entities.csproj", "{30066733-F5F8-4353-820B-A0438D4C3187}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.Constants", "DataGridView.Constants\DataGridView.Constants.csproj", "{DBB181D1-E83B-4E51-A6AB-873ECE4DD253}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGrisView.Services.Contracts", "DataGrisView.Services.Contracts\DataGrisView.Services.Contracts.csproj", "{ED1B67EA-4559-4AB8-A354-862CA08C24CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.Services", "DataGridView.Services\DataGridView.Services.csproj", "{E8DFDBA6-69D9-48BA-8F40-52293932B005}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BL", "BL", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{22DCB3CA-A531-4CE9-9A38-9B98A9F7ED64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,30 @@ Global
 		{B6042A5B-59EC-43A1-B8A4-645DD102A9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6042A5B-59EC-43A1-B8A4-645DD102A9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6042A5B-59EC-43A1-B8A4-645DD102A9DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30066733-F5F8-4353-820B-A0438D4C3187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30066733-F5F8-4353-820B-A0438D4C3187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30066733-F5F8-4353-820B-A0438D4C3187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30066733-F5F8-4353-820B-A0438D4C3187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB181D1-E83B-4E51-A6AB-873ECE4DD253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB181D1-E83B-4E51-A6AB-873ECE4DD253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB181D1-E83B-4E51-A6AB-873ECE4DD253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB181D1-E83B-4E51-A6AB-873ECE4DD253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED1B67EA-4559-4AB8-A354-862CA08C24CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED1B67EA-4559-4AB8-A354-862CA08C24CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED1B67EA-4559-4AB8-A354-862CA08C24CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED1B67EA-4559-4AB8-A354-862CA08C24CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8DFDBA6-69D9-48BA-8F40-52293932B005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8DFDBA6-69D9-48BA-8F40-52293932B005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8DFDBA6-69D9-48BA-8F40-52293932B005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8DFDBA6-69D9-48BA-8F40-52293932B005}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{30066733-F5F8-4353-820B-A0438D4C3187} = {22DCB3CA-A531-4CE9-9A38-9B98A9F7ED64}
+		{ED1B67EA-4559-4AB8-A354-862CA08C24CB} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{E8DFDBA6-69D9-48BA-8F40-52293932B005} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8E71685-2B42-4C0E-BA54-C263A03CDCE5}

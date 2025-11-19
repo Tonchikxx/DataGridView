@@ -27,7 +27,16 @@ namespace DataGridView.Forms
 
             if (sourceCar != null)
             {
-                targetCar = sourceCar.Clone();
+                targetCar = new CarModel
+                {
+                    Id = sourceCar.Id,
+                    CarName = sourceCar.CarName,
+                    GosNumber = sourceCar.GosNumber,
+                    Mileage = sourceCar.Mileage,
+                    FuelConsumption = sourceCar.FuelConsumption,
+                    FuelVolume = sourceCar.FuelVolume,
+                    CostPerMinute = sourceCar.CostPerMinute
+                };
                 buttonSave.Text = "Сохранить";
                 Text = "Редактирование автомобиля";
             }
