@@ -4,11 +4,34 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<Authors>ustyancevaantonina</Authors>
+	<Product>DataGridView</Product>
+	<Description>DataGridView.Services Устьянцева Антонина Александровна ИП-22-3</Description>
+	<Version>1.0.2</Version>
+	<PackageTags>Storage; InMemoryStorage; Service</PackageTags>
+	<PackageIcon>icon.png</PackageIcon>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\DAL\DataGridView.Entities\DataGridView.Entities.csproj" />
     <ProjectReference Include="..\DataGrisView.Services.Contracts\DataGrisView.Services.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Update="icon.png">
+		<Pack>True</Pack>
+		<PackagePath>\</PackagePath>
+	</None>
+	<None Update="README.md">
+		<Pack>True</Pack>
+		<PackagePath>\</PackagePath>
+	</None>
+	<None Update="LICENSE">
+		<Pack>True</Pack>
+		<PackagePath>\</PackagePath>
+	</None>
   </ItemGroup>
 
 </Project>

@@ -37,7 +37,7 @@
             toolStripButtonEdit = new ToolStripButton();
             toolStripButtonDelete = new ToolStripButton();
             dataGridView = new System.Windows.Forms.DataGridView();
-            СarNameCol = new DataGridViewComboBoxColumn();
+            СarNameCol = new DataGridViewTextBoxColumn();
             GosNumber = new DataGridViewTextBoxColumn();
             Mileage = new DataGridViewTextBoxColumn();
             FuelСonsumption = new DataGridViewTextBoxColumn();
@@ -125,36 +125,44 @@
             // 
             // СarNameCol
             // 
+            СarNameCol.DataPropertyName = "CarName";
             СarNameCol.HeaderText = "Марка автомобиля";
             СarNameCol.Name = "СarNameCol";
             СarNameCol.ReadOnly = true;
+            СarNameCol.Resizable = DataGridViewTriState.True;
+            СarNameCol.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // GosNumber
             // 
+            GosNumber.DataPropertyName = "GosNumber";
             GosNumber.HeaderText = "Гос. номер";
             GosNumber.Name = "GosNumber";
             GosNumber.ReadOnly = true;
             // 
             // Mileage
             // 
+            Mileage.DataPropertyName = "Mileage";
             Mileage.HeaderText = "Пробег";
             Mileage.Name = "Mileage";
             Mileage.ReadOnly = true;
             // 
             // FuelСonsumption
             // 
+            FuelСonsumption.DataPropertyName = "FuelConsumption";
             FuelСonsumption.HeaderText = "Расход тплива";
             FuelСonsumption.Name = "FuelСonsumption";
             FuelСonsumption.ReadOnly = true;
             // 
             // FuelVolume
             // 
+            FuelVolume.DataPropertyName = "FuelVolume";
             FuelVolume.HeaderText = "Объём топлива";
             FuelVolume.Name = "FuelVolume";
             FuelVolume.ReadOnly = true;
             // 
             // CostPerMinute
             // 
+            CostPerMinute.DataPropertyName = "CostPerMinute";
             CostPerMinute.HeaderText = "Стоимость аренды (за минуту)";
             CostPerMinute.Name = "CostPerMinute";
             CostPerMinute.ReadOnly = true;
@@ -201,7 +209,7 @@
         private ToolStripStatusLabel toolStripStatusLabelAmount;
         private ToolStripStatusLabel toolStripStatusLabelLowAmount;
         private System.Windows.Forms.DataGridView dataGridView;
-        private DataGridViewComboBoxColumn СarNameCol;
+        private DataGridViewTextBoxColumn СarNameCol;
         private DataGridViewTextBoxColumn GosNumber;
         private DataGridViewTextBoxColumn Mileage;
         private DataGridViewTextBoxColumn FuelСonsumption;

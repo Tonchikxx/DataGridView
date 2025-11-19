@@ -23,10 +23,10 @@ namespace DataGridView.Services
                     Id = Guid.NewGuid(),
                     CarName = CarType.Lada,
                     GosNumber = "ПР678Н",
-                    Mileage = 300,
+                    Mileage = 50,
                     FuelConsumption = 50,
                     FuelVolume = 5,
-                    CostPerMinute = 120
+                    CostPerMinute = 60
                 },   
 
                 new CarModel
@@ -34,7 +34,7 @@ namespace DataGridView.Services
                     Id = Guid.NewGuid(),
                     CarName = CarType.Mitsubishi,
                     GosNumber = "АО666О",
-                    Mileage = 150,
+                    Mileage = 100,
                     FuelConsumption = 40,
                     FuelVolume = 100,
                     CostPerMinute = 90
@@ -45,7 +45,7 @@ namespace DataGridView.Services
                     Id = Guid.NewGuid(),
                     CarName = CarType.Hyundai,
                     GosNumber = "УУ777С",
-                    Mileage = 100,
+                    Mileage = 90,
                     FuelConsumption = 50,
                     CostPerMinute = 100
                 }
@@ -75,7 +75,7 @@ namespace DataGridView.Services
         {
             var existingCar = cars.FirstOrDefault(p => p.Id == car.Id);
 
-            existingCar.CarName = car.CarName;
+            existingCar!.CarName = car.CarName;
             existingCar.GosNumber = car.GosNumber;
             existingCar.Mileage = car.Mileage;
             existingCar.FuelConsumption = car.FuelConsumption;
@@ -122,7 +122,7 @@ namespace DataGridView.Services
         {
             var car = cars.FirstOrDefault(p => p.Id == id);
 
-            var fuelReserveHours = car.FuelVolume / car.FuelConsumption;
+            var fuelReserveHours = car!.FuelVolume / car.FuelConsumption;
             return await Task.FromResult(fuelReserveHours);
         }
 
@@ -133,7 +133,7 @@ namespace DataGridView.Services
         {
             var car = cars.FirstOrDefault(p => p.Id == id);
 
-            var fuelReserveHours = car.FuelVolume / car.FuelConsumption;
+            var fuelReserveHours = car!.FuelVolume / car.FuelConsumption;
             var sumRent = fuelReserveHours * 60 * car.CostPerMinute;
             return await Task.FromResult(sumRent);
         }
