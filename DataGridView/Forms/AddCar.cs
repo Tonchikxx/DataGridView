@@ -1,3 +1,4 @@
+using DataGridView.Entities.Models;
 using DataGridView.Infrastructure;
 using DataGridView.Models;
 using System.ComponentModel.DataAnnotations;

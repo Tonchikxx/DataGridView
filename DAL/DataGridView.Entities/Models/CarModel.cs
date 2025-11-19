@@ -1,10 +1,11 @@
-﻿using DataGridView.Classes;
+﻿using DataGridView.Constants;
+using DataGridView.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace DataGridView.Models
+namespace DataGridView.Entities.Models
 {
     /// <summary>
-    /// Модель авто
+    /// Авомобили
     /// </summary>
     public class CarModel
     {

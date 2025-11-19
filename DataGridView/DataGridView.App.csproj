@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataGridView.Services\DataGridView.Services.csproj" />
+    <ProjectReference Include="..\BL\DataGridView.Services\DataGridView.Services.csproj" />
   </ItemGroup>
 
 </Project>
