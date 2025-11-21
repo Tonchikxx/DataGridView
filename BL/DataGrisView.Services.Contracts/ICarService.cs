@@ -2,6 +2,9 @@
 
 namespace DataGrisView.Services.Contracts
 {
+    /// <summary>
+    /// Методы для операций с хранилищем
+    /// </summary>
     public interface ICarService
     {
         /// <summary>
@@ -12,42 +15,37 @@ namespace DataGrisView.Services.Contracts
         /// <summary>
         /// Добавить новый автомобиль
         /// </summary>
-        public Task AddCar(CarModel car);
+        public Task AddCar(CarModel car, CancellationToken cancellationToken);
 
         /// <summary>
         /// Обновить автомобиль
         /// </summary>
-        public Task UpdateCar(CarModel car);
+        public Task UpdateCar(CarModel car, CancellationToken cancellationToken);
 
         /// <summary>
         /// Удалить автомобиль
         /// </summary>
-        public Task DeleteCar(Guid id);
-
-        /// <summary>
-        /// Найти автомобиль по Id
-        /// </summary>
-        public Task<CarModel?> GetCarById(Guid id);
+        public Task DeleteCar(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить общее количество автомобилей
         /// </summary>
-        public Task<int> GetCarCount();
+        public Task<int> GetCarCount(CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить количество автомобилей с критически низким уровнем запаса топлива   
         /// </summary>
-        public Task<int> GetCarWithFuelVolume();
+        public Task<int> GetCarWithFuelVolume(CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить запас хода топлива автомобиля
         /// </summary>
-        public Task<double> GetFuelReserveHours(Guid id);
+        public Task<double> GetFuelReserveHours(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Сумма аренды автомобиля
         /// </summary>
-        public Task<double> GetSumRent(Guid id);
+        public Task<double> GetSumRent(Guid id, CancellationToken cancellationToken);
 
     }
 }

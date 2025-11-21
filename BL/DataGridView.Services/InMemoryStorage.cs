@@ -1,5 +1,4 @@
 ﻿using DataGridView.Entities.Models;
-using DataGridView.Models;
 using DataGrisView.Services.Contracts;
 
 namespace DataGridView.Services
@@ -9,69 +8,39 @@ namespace DataGridView.Services
     /// </summary>
     public class InMemoryStorage : ICarService
     {
-        private List<CarModel> cars;
+        private readonly List<CarModel> cars;
 
         /// <summary>
         /// Данные автомобилей
         /// </summary>
         public InMemoryStorage() 
         {
-            cars =
-            [
-                new CarModel
-                {
-                    Id = Guid.NewGuid(),
-                    CarName = CarType.Lada,
-                    GosNumber = "ПР678Н",
-                    Mileage = 50,
-                    FuelConsumption = 50,
-                    FuelVolume = 5,
-                    CostPerMinute = 60
-                },   
-
-                new CarModel
-                {
-                    Id = Guid.NewGuid(),
-                    CarName = CarType.Mitsubishi,
-                    GosNumber = "АО666О",
-                    Mileage = 100,
-                    FuelConsumption = 40,
-                    FuelVolume = 100,
-                    CostPerMinute = 90
-                },
-
-                new CarModel
-                {
-                    Id = Guid.NewGuid(),
-                    CarName = CarType.Hyundai,
-                    GosNumber = "УУ777С",
-                    Mileage = 90,
-                    FuelConsumption = 50,
-                    CostPerMinute = 100
-                }
-            ];
+            cars = [];
         }
-
-
 
         /// <summary>
         /// Получить все автомобили
         /// </summary>
-        public async Task<IEnumerable<CarModel>> GetAllCars() => await Task.FromResult<IEnumerable<CarModel>>(cars.ToList());
+        public Task<IEnumerable<CarModel>> GetAllCars()
+        {
+            return Task.FromResult<IEnumerable<CarModel>>(cars);
+        }
+
+        
 
         /// <summary>
         /// Добавление автомобиля
         /// </summary>
-        public async Task AddCar(CarModel car)
+        public Task AddCar(CarModel car, CancellationToken cancellationToken)
         {
             cars.Add(car);
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Обновление автомобиля
         /// </summary>
-        public async Task UpdateCar(CarModel car)
+        public Task UpdateCar(CarModel car, CancellationToken cancellationToken)
         {
             var existingCar = cars.FirstOrDefault(p => p.Id == car.Id);
 
@@ -82,13 +51,13 @@ namespace DataGridView.Services
             existingCar.FuelVolume = car.FuelVolume;
             existingCar.CostPerMinute = car.CostPerMinute;
 
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Удаление автомобиля по id
         /// </summary>
-        public async Task DeleteCar(Guid id)
+        public Task DeleteCar(Guid id, CancellationToken cancellationToken)
         {
             var car = cars.FirstOrDefault(p => p.Id == id);
 
@@ -97,45 +66,46 @@ namespace DataGridView.Services
                 cars.Remove(car);
             }
 
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
-
-        /// <summary>
-        /// Найти автомобиль по id
-        /// </summary>
-        public async Task<CarModel?> GetCarById(Guid id) => await Task.FromResult(cars.FirstOrDefault(p => p.Id == id));
 
         /// <summary>
         /// Получить общее количество автомобилей
         /// </summary>
-        public async Task<int> GetCarCount() => await Task.FromResult(cars.Count);
+        public Task<int> GetCarCount(CancellationToken cancellationToken)
+        {
+            return Task.FromResult(cars.Count);
+        }
 
         /// <summary>
         /// Получить количество автомобилей с критически низким уровнем запаса топлива   
         /// </summary>
-        public async Task<int> GetCarWithFuelVolume() => await Task.FromResult(cars.Count(p => p.FuelVolume < 7));
+        public Task<int> GetCarWithFuelVolume(CancellationToken cancellationToken)
+        {
+            return Task.FromResult(cars.Count(p => p.FuelVolume < 7));
+        }
 
         /// <summary>
         /// Получить запас хода топлива автомобиля
         /// </summary>
-        public async Task<double> GetFuelReserveHours(Guid id)
+        public Task<double> GetFuelReserveHours(Guid id, CancellationToken cancellationToken)
         {
             var car = cars.FirstOrDefault(p => p.Id == id);
 
             var fuelReserveHours = car!.FuelVolume / car.FuelConsumption;
-            return await Task.FromResult(fuelReserveHours);
+            return Task.FromResult(fuelReserveHours);
         }
 
         /// <summary>
         /// Сумма аренды автомобиля
         /// </summary>
-        public async Task<double> GetSumRent(Guid id)
+        public Task<double> GetSumRent(Guid id, CancellationToken cancellationToken)
         {
             var car = cars.FirstOrDefault(p => p.Id == id);
 
             var fuelReserveHours = car!.FuelVolume / car.FuelConsumption;
             var sumRent = fuelReserveHours * 60 * car.CostPerMinute;
-            return await Task.FromResult(sumRent);
+            return Task.FromResult(sumRent);
         }
     }
 }

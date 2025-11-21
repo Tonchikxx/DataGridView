@@ -1,4 +1,4 @@
-﻿namespace DataGridView.Models
+﻿namespace DataGridView.Entities.Models
 {
     /// <summary>
     /// Марки машин

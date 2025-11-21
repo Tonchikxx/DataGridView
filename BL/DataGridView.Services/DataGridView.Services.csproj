@@ -7,7 +7,7 @@
 	<Authors>ustyancevaantonina</Authors>
 	<Product>DataGridView</Product>
 	<Description>DataGridView.Services Устьянцева Антонина Александровна ИП-22-3</Description>
-	<Version>1.0.2</Version>
+	<Version>1.0.3</Version>
 	<PackageTags>Storage; InMemoryStorage; Service</PackageTags>
 	<PackageIcon>icon.png</PackageIcon>
 	<PackageReadmeFile>README.md</PackageReadmeFile>

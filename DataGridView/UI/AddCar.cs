@@ -1,10 +1,9 @@
 using DataGridView.Entities.Models;
-using DataGridView.Infrastructure;
-using DataGridView.Models;
+using DataGridView.App.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace DataGridView.Forms
+namespace DataGridView.App.UI
 {
     /// <summary>
     /// Класс формы добавления машин
@@ -62,7 +61,7 @@ namespace DataGridView.Forms
         /// <summary>
         /// Метод обработки клика кнопки "Добавить" или "Сохранить"
         /// </summary>
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
 

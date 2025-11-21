@@ -1,4 +1,4 @@
-﻿namespace DataGridView.Forms
+﻿namespace DataGridView.App.UI
 {
     partial class AddCar
     {
@@ -155,7 +155,7 @@
             buttonSave.TabIndex = 12;
             buttonSave.Text = "Сохранить";
             buttonSave.UseVisualStyleBackColor = true;
-            buttonSave.Click += buttonSave_Click;
+            buttonSave.Click += ButtonSave_Click;
             // 
             // errorProvider
             // 

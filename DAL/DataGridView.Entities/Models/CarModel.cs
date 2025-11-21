@@ -1,5 +1,4 @@
-﻿using DataGridView.Constants;
-using DataGridView.Models;
+﻿using DataGridView.Entities.Contracts;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataGridView.Entities.Models
@@ -27,7 +26,7 @@ namespace DataGridView.Entities.Models
         /// </summary>
         [Display(Name = "Государственный номер")]
         [Required(ErrorMessage = "{0} обязателен для заполнения")]
-        [StringLength(AppConstants.AutoNumberMaxLength, MinimumLength = AppConstants.AutoNumberMinLength,
+        [StringLength(EntitiesValidationConstants.AutoNumberMaxLength, MinimumLength = EntitiesValidationConstants.AutoNumberMinLength,
             ErrorMessage = "{0} должен быть от {2} до {1} символов")]
         [RegularExpression(@"^[А-ЯЁ]{2}\d{3}[А-ЯЁ]{1}$",
         ErrorMessage = "{0} должен быть в формате: АЛ123В (2 буквы-3 цифры-1 буква)")]
@@ -38,7 +37,7 @@ namespace DataGridView.Entities.Models
         /// Пробег (км)
         /// </summary>
         [Display(Name = "Пробег автомобиля")]
-        [Range(AppConstants.MileageMin, AppConstants.MileageMax,
+        [Range(EntitiesValidationConstants.MileageMin, EntitiesValidationConstants.MileageMax,
             ErrorMessage = "{0} должен быть в диапазоне от {1} до {2} км")]
         public double Mileage { get; set; }
 
@@ -46,7 +45,7 @@ namespace DataGridView.Entities.Models
         /// Средний расход топлива (л/час)
         /// </summary>
         [Display(Name = "Средний расход топлива")]
-        [Range(AppConstants.FuelConsumptionMin, AppConstants.FuelConsumptionMax,
+        [Range(EntitiesValidationConstants.FuelConsumptionMin, EntitiesValidationConstants.FuelConsumptionMax,
             ErrorMessage = "{0} должен быть в диапазоне от {1} до {2} л/час")]
         public double FuelConsumption { get; set; }
 
@@ -54,7 +53,7 @@ namespace DataGridView.Entities.Models
         /// Текущий объем топлива (л)
         /// </summary>
         [Display(Name = "Текущий объем топлива")]
-        [Range(AppConstants.CurrentFuelVolumeMin, AppConstants.CurrentFuelVolumeMax,
+        [Range(EntitiesValidationConstants.CurrentFuelVolumeMin, EntitiesValidationConstants.CurrentFuelVolumeMax,
             ErrorMessage = "{0} должен быть в диапазоне от {1} до {2} литров")]
         public double FuelVolume { get; set; }
 
@@ -62,7 +61,7 @@ namespace DataGridView.Entities.Models
         /// Стоимость аренды (руб/мин)
         /// </summary>
         [Display(Name = "Стоимость аренды за минуту")]
-        [Range(AppConstants.RentCostPerMinuteMin, AppConstants.RentCostPerMinuteMax,
+        [Range(EntitiesValidationConstants.RentCostPerMinuteMin, EntitiesValidationConstants.RentCostPerMinuteMax,
             ErrorMessage = "{0} должна быть в диапазоне от {1} до {2} руб/мин")]
         public double CostPerMinute { get; set; }
         

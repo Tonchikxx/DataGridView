@@ -1,8 +1,8 @@
-using DataGridView.Forms;
+using DataGridView.App.UI;
 using DataGridView.Services;
 using DataGrisView.Services.Contracts;
 
-namespace DataGridView
+namespace DataGridView.App
 {
     /// <summary>
     /// Класс входа в программу
