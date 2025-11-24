@@ -19,7 +19,7 @@ namespace DataGridView.App.UI
             InitializeComponent();
             this.carService = carService;
             dataGridView.AutoGenerateColumns = false;
-
+            dataGridView.DataSource = bindingSource;
             InitializeDataAsync().GetAwaiter().GetResult();
         }
 
@@ -79,7 +79,6 @@ namespace DataGridView.App.UI
         {
             var cars = await carService.GetAllCars();
             bindingSource.DataSource = cars.ToList();
-            dataGridView.DataSource = bindingSource;
             await SetStatistic();
         }
 
