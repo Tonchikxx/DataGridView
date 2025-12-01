@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DAL\DataGridView.Entities\DataGridView.Entities.csproj" />
+    <ProjectReference Include="..\..\DAL\DataGridView.Repository\DataGridView.Repository.csproj" />
     <ProjectReference Include="..\DataGrisView.Services.Contracts\DataGrisView.Services.Contracts.csproj" />
   </ItemGroup>
 

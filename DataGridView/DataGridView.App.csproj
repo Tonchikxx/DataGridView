@@ -9,11 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataGridView.Services" Version="1.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\BL\DataGrisView.Services.Contracts\DataGrisView.Services.Contracts.csproj" />
+    <ProjectReference Include="..\BL\DataGridView.Services\DataGridView.Services.csproj" />
   </ItemGroup>
 
 </Project>

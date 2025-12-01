@@ -16,8 +16,8 @@ namespace DataGridView.App
         public static void Main()
         {
             ApplicationConfiguration.Initialize();
-            ICarService carServices = new InMemoryStorage();
-            Application.Run(new MainForm(carServices));
+            ICarService carService = new CarService(new Repository.InMemoryStorage());
+            Application.Run(new MainForm(carService));
         }
     }
 }
