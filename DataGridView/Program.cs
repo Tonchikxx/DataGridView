@@ -1,4 +1,8 @@
-namespace DataGridView
+using DataGridView.App.UI;
+using DataGridView.Services;
+using DataGrisView.Services.Contracts;
+
+namespace DataGridView.App
 {
     /// <summary>
     /// Класс входа в программу
@@ -12,7 +16,8 @@ namespace DataGridView
         public static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Forms.MainForm());
+            ICarService carServices = new InMemoryStorage();
+            Application.Run(new MainForm(carServices));
         }
     }
 }

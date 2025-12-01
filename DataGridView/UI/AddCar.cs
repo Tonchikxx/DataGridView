@@ -1,9 +1,9 @@
-using DataGridView.Infrastructure;
-using DataGridView.Models;
+using DataGridView.Entities.Models;
+using DataGridView.App.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace DataGridView.Forms
+namespace DataGridView.App.UI
 {
     /// <summary>
     /// Класс формы добавления машин
@@ -27,7 +27,16 @@ namespace DataGridView.Forms
 
             if (sourceCar != null)
             {
-                targetCar = sourceCar.Clone();
+                targetCar = new CarModel
+                {
+                    Id = sourceCar.Id,
+                    CarName = sourceCar.CarName,
+                    GosNumber = sourceCar.GosNumber,
+                    Mileage = sourceCar.Mileage,
+                    FuelConsumption = sourceCar.FuelConsumption,
+                    FuelVolume = sourceCar.FuelVolume,
+                    CostPerMinute = sourceCar.CostPerMinute
+                };
                 buttonSave.Text = "Сохранить";
                 Text = "Редактирование автомобиля";
             }
@@ -52,7 +61,7 @@ namespace DataGridView.Forms
         /// <summary>
         /// Метод обработки клика кнопки "Добавить" или "Сохранить"
         /// </summary>
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
 

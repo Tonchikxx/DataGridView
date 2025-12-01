@@ -1,9 +1,9 @@
-﻿namespace DataGridView.Classes
+﻿namespace DataGridView.Entities.Contracts
 {
     /// <summary>
     /// Класс констант
     /// </summary>
-    internal class AppConstants
+    public class EntitiesValidationConstants
     {
         /// <summary>
         /// Минимальная длина государственного номера автомобиля

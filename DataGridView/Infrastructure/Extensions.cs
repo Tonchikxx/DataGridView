@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace DataGridView.Infrastructure
+namespace DataGridView.App.Infrastructure
 {
     /// <summary>
     /// Класс расширений для работы с привязкой данных и валидацией

@@ -1,4 +1,4 @@
-﻿namespace DataGridView.Forms
+﻿namespace DataGridView.App.UI
 {
     partial class MainForm
     {
@@ -37,7 +37,7 @@
             toolStripButtonEdit = new ToolStripButton();
             toolStripButtonDelete = new ToolStripButton();
             dataGridView = new System.Windows.Forms.DataGridView();
-            СarNameCol = new DataGridViewComboBoxColumn();
+            СarNameCol = new DataGridViewTextBoxColumn();
             GosNumber = new DataGridViewTextBoxColumn();
             Mileage = new DataGridViewTextBoxColumn();
             FuelСonsumption = new DataGridViewTextBoxColumn();
@@ -86,7 +86,7 @@
             toolStripButtonAdd.Name = "toolStripButtonAdd";
             toolStripButtonAdd.Size = new Size(63, 22);
             toolStripButtonAdd.Text = "Добавить";
-            toolStripButtonAdd.Click += toolStripButtonAdd_Click;
+            toolStripButtonAdd.Click += ToolStripButtonAdd_Click;
             // 
             // toolStripButtonEdit
             // 
@@ -96,7 +96,7 @@
             toolStripButtonEdit.Name = "toolStripButtonEdit";
             toolStripButtonEdit.Size = new Size(65, 22);
             toolStripButtonEdit.Text = "Изменить";
-            toolStripButtonEdit.Click += toolStripButtonEdit_Click;
+            toolStripButtonEdit.Click += ToolStripButtonEdit_Click;
             // 
             // toolStripButtonDelete
             // 
@@ -107,7 +107,7 @@
             toolStripButtonDelete.Size = new Size(55, 22);
             toolStripButtonDelete.Text = "Удалить";
             toolStripButtonDelete.TextImageRelation = TextImageRelation.TextBeforeImage;
-            toolStripButtonDelete.Click += toolStripButtonDelete_Click;
+            toolStripButtonDelete.Click += ToolStripButtonDelete_Click;
             // 
             // dataGridView
             // 
@@ -121,40 +121,48 @@
             dataGridView.ReadOnly = true;
             dataGridView.Size = new Size(843, 403);
             dataGridView.TabIndex = 2;
-            dataGridView.CellFormatting += dataGridView_CellFormatting;
+            dataGridView.CellFormatting += DataGridView_CellFormatting;
             // 
             // СarNameCol
             // 
+            СarNameCol.DataPropertyName = "CarName";
             СarNameCol.HeaderText = "Марка автомобиля";
             СarNameCol.Name = "СarNameCol";
             СarNameCol.ReadOnly = true;
+            СarNameCol.Resizable = DataGridViewTriState.True;
+            СarNameCol.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // GosNumber
             // 
+            GosNumber.DataPropertyName = "GosNumber";
             GosNumber.HeaderText = "Гос. номер";
             GosNumber.Name = "GosNumber";
             GosNumber.ReadOnly = true;
             // 
             // Mileage
             // 
+            Mileage.DataPropertyName = "Mileage";
             Mileage.HeaderText = "Пробег";
             Mileage.Name = "Mileage";
             Mileage.ReadOnly = true;
             // 
             // FuelСonsumption
             // 
+            FuelСonsumption.DataPropertyName = "FuelConsumption";
             FuelСonsumption.HeaderText = "Расход тплива";
             FuelСonsumption.Name = "FuelСonsumption";
             FuelСonsumption.ReadOnly = true;
             // 
             // FuelVolume
             // 
+            FuelVolume.DataPropertyName = "FuelVolume";
             FuelVolume.HeaderText = "Объём топлива";
             FuelVolume.Name = "FuelVolume";
             FuelVolume.ReadOnly = true;
             // 
             // CostPerMinute
             // 
+            CostPerMinute.DataPropertyName = "CostPerMinute";
             CostPerMinute.HeaderText = "Стоимость аренды (за минуту)";
             CostPerMinute.Name = "CostPerMinute";
             CostPerMinute.ReadOnly = true;
@@ -181,6 +189,7 @@
             Controls.Add(statusStrip);
             Name = "MainForm";
             Text = "Прокат автомобиля";
+            Load += MainForm_Load;
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             toolStrip.ResumeLayout(false);
@@ -200,7 +209,7 @@
         private ToolStripStatusLabel toolStripStatusLabelAmount;
         private ToolStripStatusLabel toolStripStatusLabelLowAmount;
         private System.Windows.Forms.DataGridView dataGridView;
-        private DataGridViewComboBoxColumn СarNameCol;
+        private DataGridViewTextBoxColumn СarNameCol;
         private DataGridViewTextBoxColumn GosNumber;
         private DataGridViewTextBoxColumn Mileage;
         private DataGridViewTextBoxColumn FuelСonsumption;
