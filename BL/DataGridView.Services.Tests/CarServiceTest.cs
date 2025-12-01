@@ -2,6 +2,8 @@
 using DataGridView.Repository.Contracts;
 using DataGrisView.Services.Contracts;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using Xunit;
 
@@ -14,6 +16,7 @@ namespace DataGridView.Services.Tests
     {
         private readonly Mock<ICarRepository> mock;
         private readonly ICarService service;
+        private readonly ILoggerFactory loggerFactory = NullLoggerFactory.Instance;
 
         /// <summary>
         /// Конструктор класса для <see cref="CarServiceTest"/>
@@ -21,7 +24,8 @@ namespace DataGridView.Services.Tests
         public CarServiceTest()
         {
             mock = new Mock<ICarRepository>();
-            service = new CarService(mock.Object);
+            loggerFactory = NullLoggerFactory.Instance;
+            service = new CarService(mock.Object, loggerFactory);
         }
 
         /// <summary>
