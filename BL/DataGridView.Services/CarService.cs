@@ -1,5 +1,6 @@
 ﻿using DataGridView.Entities.Models;
 using DataGridView.Repository;
+using DataGridView.Repository.Contracts;
 using DataGrisView.Services.Contracts;
 
 namespace DataGridView.Services
@@ -7,7 +8,7 @@ namespace DataGridView.Services
     /// <summary>
     /// Сервис управления автомобилями
     /// </summary>
-    public class CarService(InMemoryStorage storage) : ICarService
+    public class CarService(ICarRepository storage) : ICarService
     {
         /// <summary>
         /// Получить все автомобили
