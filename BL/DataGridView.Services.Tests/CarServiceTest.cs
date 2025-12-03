@@ -34,10 +34,13 @@ namespace DataGridView.Services.Tests
         [Fact]
         public async Task AddCarShouldCallStorageAdd()
         {
+            // Arrange
             var car = new CarModel();
 
+            // Act
             await service.AddCar(car, CancellationToken.None);
 
+            // Assert
             mock.Verify(x => x.AddCar(car, CancellationToken.None), Times.Once);
         }
 
@@ -46,14 +49,17 @@ namespace DataGridView.Services.Tests
         /// </summary>
         [Fact]
         public async Task DeleteCarShouldCallStorageDeletre()
-        {
+        {   
+            // Arrange
             var id = Guid.NewGuid();
             var car = new CarModel { Id = id };
 
             await service.AddCar(car, CancellationToken.None);
 
+            // Act
             await service.DeleteCar(id, CancellationToken.None);
 
+            // Assert
             mock.Verify(x => x.DeleteCar(id, CancellationToken.None), Times.Once);
         }
 
@@ -63,6 +69,7 @@ namespace DataGridView.Services.Tests
         [Fact]
         public async Task GetAllCarsShouldReturnDataFromStorage()
         {
+            // Arrange
             var list = new List<CarModel>
             {
                 new (),
@@ -72,8 +79,10 @@ namespace DataGridView.Services.Tests
                 .Setup(x => x.GetAllCars())
             .ReturnsAsync(list);
 
+            // Act
             var res = await service.GetAllCars();
 
+            // Assert
             res.Should().BeSameAs(list);
         }
 
@@ -83,12 +92,15 @@ namespace DataGridView.Services.Tests
         [Fact]
         public async Task GetCarCountShouldReturnCorrectData()
         {
+            // Arrange
             mock
                 .Setup(s => s.GetCarCount(CancellationToken.None))
                 .ReturnsAsync(3);
 
+            // Act
             var result = await service.GetCarCount(CancellationToken.None);
 
+            // Assert
             result.Should().Be(3);
 
             mock.Verify(x => x.GetCarCount(CancellationToken.None), Times.Once);
@@ -100,15 +112,16 @@ namespace DataGridView.Services.Tests
         [Fact]
         public async Task GetCarWithFuelVolumeShouldReturnCorrectCount()
         {
+            // Arrange
             int expectedCount = 1;
             mock
                 .Setup(x => x.GetCarWithFuelVolume(CancellationToken.None))
                 .ReturnsAsync(expectedCount);
 
-
+            // Act
             var result = await service.GetCarWithFuelVolume(CancellationToken.None);
 
-
+            // Assert
             result.Should().Be(expectedCount);
 
             mock.Verify(x => x.GetCarWithFuelVolume(CancellationToken.None), Times.Once);
@@ -120,6 +133,7 @@ namespace DataGridView.Services.Tests
         [Fact]
         public async Task UpdateCarShouldUpdateEntityDataInStorage()
         {
+            // Arrange
             var id = Guid.NewGuid();
             var incomingCar = new CarModel
             {
@@ -143,8 +157,10 @@ namespace DataGridView.Services.Tests
                 ), CancellationToken.None)
             ).Returns(Task.CompletedTask);
 
+            // Act
             await service.UpdateCar(incomingCar, CancellationToken.None);
 
+            // Assert
             mock.Verify(s => s.UpdateCar(
                 It.Is<CarModel>(p =>
                     p.CarName == incomingCar.CarName &&
@@ -163,6 +179,7 @@ namespace DataGridView.Services.Tests
         [Fact]
         public async Task GetFuelReserveHoursShouldReturnCorrectValue()
         {
+            // Arrange
             var carId = Guid.NewGuid();
             double expectedFuelReserve = 5.0; 
 
@@ -170,8 +187,10 @@ namespace DataGridView.Services.Tests
                 .Setup(x => x.GetFuelReserveHours(carId, CancellationToken.None))
                 .ReturnsAsync(expectedFuelReserve);
 
+            // Act
             var result = await service.GetFuelReserveHours(carId, CancellationToken.None);
 
+            // Assert
             result.Should().Be(expectedFuelReserve);
             mock.Verify(x => x.GetFuelReserveHours(carId, CancellationToken.None), Times.Once);
         }
@@ -182,6 +201,7 @@ namespace DataGridView.Services.Tests
         [Fact]
         public async Task GetSumRentShouldReturnCorrectValue()
         {
+            // Arrange
             var carId = Guid.NewGuid();
             double expectedSumRent = 3000.0; 
 
@@ -189,8 +209,10 @@ namespace DataGridView.Services.Tests
                 .Setup(x => x.GetSumRent(carId, CancellationToken.None))
                 .ReturnsAsync(expectedSumRent);
 
+            // Act
             var result = await service.GetSumRent(carId, CancellationToken.None);
 
+            // Assert
             result.Should().Be(expectedSumRent);
             mock.Verify(x => x.GetSumRent(carId, CancellationToken.None), Times.Once);
         }
