@@ -54,8 +54,6 @@ namespace DataGridView.Services.Tests
             var id = Guid.NewGuid();
             var car = new CarModel { Id = id };
 
-            await service.AddCar(car, CancellationToken.None);
-
             // Act
             await service.DeleteCar(id, CancellationToken.None);
 

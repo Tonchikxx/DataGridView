@@ -1,5 +1,4 @@
 ﻿using DataGridView.Entities.Models;
-using DataGridView.Repository;
 using DataGridView.Repository.Contracts;
 using DataGrisView.Services.Contracts;
 using Microsoft.Extensions.Logging;
@@ -20,7 +19,7 @@ namespace DataGridView.Services
         public async Task<IEnumerable<CarModel>> GetAllCars()
         {
             var sw = Stopwatch.StartNew();
-            var res = await storage.GetAllCars();
+            var res = await storage.GetAllCars();   
             sw.Stop();
             logger.LogDebug("CarService.GetAllCars выполнен за {ms} мс", sw.ElapsedMilliseconds);
             return res;
