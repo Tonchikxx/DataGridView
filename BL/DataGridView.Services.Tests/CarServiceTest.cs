@@ -145,14 +145,7 @@ namespace DataGridView.Services.Tests
             };
 
             mock.Setup(x => x.UpdateCar(
-                It.Is<CarModel>(p =>
-                    p.CarName == CarType.Lada &&
-                    p.GosNumber == "ПР678Н" &&
-                    p.Mileage == 50 &&
-                    p.FuelConsumption == 50 &&
-                    p.FuelVolume == 5 &&
-                    p.CostPerMinute == 60
-                ), CancellationToken.None)
+                It.Is<CarModel>(p => p == incomingCar), CancellationToken.None)
             ).Returns(Task.CompletedTask);
 
             // Act
@@ -160,14 +153,8 @@ namespace DataGridView.Services.Tests
 
             // Assert
             mock.Verify(s => s.UpdateCar(
-                It.Is<CarModel>(p =>
-                    p.CarName == incomingCar.CarName &&
-                    p.GosNumber == incomingCar.GosNumber &&
-                    p.Mileage == incomingCar.Mileage &&
-                    p.FuelConsumption == incomingCar.FuelConsumption &&
-                    p.FuelVolume == incomingCar.FuelVolume &&
-                    p.CostPerMinute == incomingCar.CostPerMinute
-                ), CancellationToken.None), Times.Once
+                It.Is<CarModel>(p => p == incomingCar), CancellationToken.None), 
+                Times.Once
             );
         }
 
