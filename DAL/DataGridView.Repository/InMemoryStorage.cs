@@ -1,19 +1,19 @@
 ﻿using DataGridView.Entities.Models;
-using DataGrisView.Services.Contracts;
+using DataGridView.Repository.Contracts;
 
-namespace DataGridView.Services
+namespace DataGridView.Repository
 {
     /// <summary>
-    /// Сервис для доступа к автомобилям, хранящимся в памяти
+    /// Слой доступа к автомобилям, хранящимся в памяти
     /// </summary>
-    public class InMemoryStorage : ICarService
+    public class InMemoryStorage : ICarRepository
     {
         private readonly List<CarModel> cars;
 
         /// <summary>
         /// Данные автомобилей
         /// </summary>
-        public InMemoryStorage() 
+        public InMemoryStorage()
         {
             cars = [];
         }
@@ -26,7 +26,7 @@ namespace DataGridView.Services
             return Task.FromResult<IEnumerable<CarModel>>(cars);
         }
 
-        
+
 
         /// <summary>
         /// Добавление автомобиля

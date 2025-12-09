@@ -9,11 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DataGridView.Services" Version="1.0.3" />
+    <PackageReference Include="Serilog" Version="4.3.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BL\DataGrisView.Services.Contracts\DataGrisView.Services.Contracts.csproj" />
+    <ProjectReference Include="..\BL\DataGridView.Services\DataGridView.Services.csproj" />
   </ItemGroup>
 
 </Project>
