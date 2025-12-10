@@ -28,24 +28,9 @@ namespace DataGrisView.Services.Contracts
         public Task DeleteCar(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Получить общее количество автомобилей
+        /// Получить статистику по автомобилям в прокате
         /// </summary>
-        public Task<int> GetCarCount(CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Получить количество автомобилей с критически низким уровнем запаса топлива   
-        /// </summary>
-        public Task<int> GetCarWithFuelVolume(CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Получить запас хода топлива автомобиля
-        /// </summary>
-        public Task<double> GetFuelReserveHours(Guid id, CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Сумма аренды автомобиля
-        /// </summary>
-        public Task<double> GetSumRent(Guid id, CancellationToken cancellationToken);
+        public Task<CarStatistics> GetStatistics();
 
     }
 }
