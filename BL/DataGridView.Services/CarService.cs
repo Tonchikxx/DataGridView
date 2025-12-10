@@ -1,4 +1,5 @@
 ﻿using DataGridView.Entities.Models;
+using DataGridView.Entities.Contracts;
 using DataGridView.Repository.Contracts;
 using DataGrisView.Services.Contracts;
 using Microsoft.Extensions.Logging;
@@ -59,51 +60,34 @@ namespace DataGridView.Services
         }
 
         /// <summary>
-        /// Получить общее количество автомобилей
+        /// Рассчитывает статистику по всем автомобилям в системе проката
         /// </summary>
-        public async Task<int> GetCarCount(CancellationToken cancellationToken)
+        public async Task<CarStatistics> GetStatistics()
         {
             var sw = Stopwatch.StartNew();
-            var res = await storage.GetCarCount(cancellationToken);
-            sw.Stop();
-            logger.LogDebug("CarService.GetCarCount выполнен за {ms} мс", sw.ElapsedMilliseconds);
-            return res;
-        }
+            try
+            {
+                logger?.LogDebug("Расчет статистики по автомобилям");
+                var cars = await storage.GetAllCars();
 
-        /// <summary>
-        /// Получить количество автомобилей с критически низким уровнем запаса топлива   
-        /// </summary>
-        public async Task<int> GetCarWithFuelVolume(CancellationToken cancellationToken)
-        {
-            var sw = Stopwatch.StartNew();
-            var res = await storage.GetCarWithFuelVolume(cancellationToken);
-            sw.Stop();
-            logger.LogDebug("CarService.GetCarWithFuelVolume выполнен за {ms} мс", sw.ElapsedMilliseconds);
-            return res;
-        }
+                var statistics = new CarStatistics
+                {
+                    GetCarCount = cars.Count(),
+                    GetCarWithFuelVolume = cars.Count(c => c.FuelVolume < EntitiesValidationConstants.CriticalFuelLevel),
+                    GetFuelReserveHours = cars.Sum(c => (double)c.CostPerMinute),
+                    GetSumRent = cars.Any() ? cars.Average(c => c.Mileage) : 0
+                };
 
-        /// <summary>
-        /// Получить запас хода топлива автомобиля
-        /// </summary>
-        public async Task<double> GetFuelReserveHours(Guid id, CancellationToken cancellationToken)
-        {
-            var sw = Stopwatch.StartNew();
-            var res = await storage.GetFuelReserveHours(id, cancellationToken);
-            sw.Stop();
-            logger.LogDebug("CarService.GetFuelReserveHours выполнен за {ms} мс", sw.ElapsedMilliseconds);
-            return res;
-        }
+                return statistics;
+            }
+            finally
+            {
+                sw.Stop();
+                var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
+                logger?.LogDebug("CarService.GetStatistics выполнен за {ms:F6} мс", sw.ElapsedMilliseconds);
+            }
 
-        /// <summary>
-        /// Сумма аренды автомобиля
-        /// </summary>
-        public async Task<double> GetSumRent(Guid id, CancellationToken cancellationToken)
-        {
-            var sw = Stopwatch.StartNew();
-            var res = await storage.GetSumRent(id, cancellationToken);
-            sw.Stop();
-            logger.LogDebug("CarService.GetSumRent выполнен за {ms} мс", sw.ElapsedMilliseconds);
-            return res;
+
         }
     }
 }

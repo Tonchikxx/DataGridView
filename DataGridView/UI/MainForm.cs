@@ -20,7 +20,6 @@ namespace DataGridView.App.UI
             this.carService = carService;
             dataGridView.AutoGenerateColumns = false;
             dataGridView.DataSource = bindingSource;
-            InitializeDataAsync().GetAwaiter().GetResult();
         }
 
         private async Task InitializeDataAsync()
@@ -77,6 +76,7 @@ namespace DataGridView.App.UI
 
         private async Task LoadData()
         {
+            await InitializeDataAsync();
             var cars = await carService.GetAllCars();
             bindingSource.DataSource = cars.ToList();
             await SetStatistic();
@@ -92,11 +92,10 @@ namespace DataGridView.App.UI
 
         private async Task SetStatistic()
         {
-            var lowFuelCars = await carService.GetCarWithFuelVolume(CancellationToken.None);
-            var carCount = await carService.GetCarCount(CancellationToken.None);
+            var statistics = await carService.GetStatistics();
 
-            toolStripStatusLabelLowAmount.Text = $"Автомобили с критически низким уровнем запаса хода: {lowFuelCars}";
-            toolStripStatusLabelAmount.Text = $"Количество автомобилей: {carCount}";
+            toolStripStatusLabelLowAmount.Text = $"Автомобили с критически низким уровнем запаса хода: {statistics.GetCarWithFuelVolume}";
+            toolStripStatusLabelAmount.Text = $"Количество автомобилей: {statistics.GetCarCount}";
         }
 
         /// <summary>
@@ -111,7 +110,7 @@ namespace DataGridView.App.UI
             {
                 return;
             }
-                
+
             if (col.DataPropertyName == nameof(CarModel.CarName))
             {
                 switch (car.CarName)
@@ -134,12 +133,14 @@ namespace DataGridView.App.UI
             if (col == FuelReserveHours)
             {
 
-                e.Value = await carService.GetFuelReserveHours(car.Id, CancellationToken.None);
+                e.Value = Math.Round(car.FuelVolume / car.FuelConsumption, 2);
             }
 
             if (col == SumRent)
             {
-                e.Value = await carService.GetSumRent(car.Id, CancellationToken.None);
+                double fuelReserveHours = car.FuelVolume / car.FuelConsumption;
+                double rentAmount = fuelReserveHours * 60 * car.CostPerMinute;
+                e.Value = Math.Round(rentAmount, 2);
             }
         }
 
@@ -175,9 +176,9 @@ namespace DataGridView.App.UI
             var editForm = new AddCar(car);
             if (editForm.ShowDialog() == DialogResult.OK)
             {
-                    await carService.UpdateCar(editForm.CurrentCar, CancellationToken.None);
-                    await OnUpdate();
-                    MessageBox.Show("Автомобиль успешно обновлен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await carService.UpdateCar(editForm.CurrentCar, CancellationToken.None);
+                await OnUpdate();
+                MessageBox.Show("Автомобиль успешно обновлен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -203,6 +204,13 @@ namespace DataGridView.App.UI
                 await carService.DeleteCar(car.Id, CancellationToken.None);
                 await OnUpdate();
             }
+        }
+
+        private async void toolStripButtonUpdate_Click(object sender, EventArgs e)
+        {
+            bindingSource.DataSource = await carService.GetAllCars();
+            bindingSource.ResetBindings(false);
+            await SetStatistic();
         }
     }
 }

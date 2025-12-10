@@ -45,6 +45,7 @@
             CostPerMinute = new DataGridViewTextBoxColumn();
             FuelReserveHours = new DataGridViewTextBoxColumn();
             SumRent = new DataGridViewTextBoxColumn();
+            toolStripButtonUpdate = new ToolStripButton();
             statusStrip.SuspendLayout();
             toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -71,7 +72,7 @@
             // 
             // toolStrip
             // 
-            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripButtonAdd, toolStripButtonEdit, toolStripButtonDelete });
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripButtonAdd, toolStripButtonEdit, toolStripButtonDelete, toolStripButtonUpdate });
             toolStrip.Location = new Point(0, 0);
             toolStrip.Name = "toolStrip";
             toolStrip.Size = new Size(843, 25);
@@ -179,6 +180,16 @@
             SumRent.Name = "SumRent";
             SumRent.ReadOnly = true;
             // 
+            // toolStripButtonUpdate
+            // 
+            toolStripButtonUpdate.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButtonUpdate.Image = (Image)resources.GetObject("toolStripButtonUpdate.Image");
+            toolStripButtonUpdate.ImageTransparentColor = Color.Magenta;
+            toolStripButtonUpdate.Name = "toolStripButtonUpdate";
+            toolStripButtonUpdate.Size = new Size(65, 22);
+            toolStripButtonUpdate.Text = "Обновить";
+            toolStripButtonUpdate.Click += toolStripButtonUpdate_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -217,5 +228,6 @@
         private DataGridViewTextBoxColumn CostPerMinute;
         private DataGridViewTextBoxColumn FuelReserveHours;
         private DataGridViewTextBoxColumn SumRent;
+        private ToolStripButton toolStripButtonUpdate;
     }
 }

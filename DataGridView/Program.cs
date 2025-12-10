@@ -1,6 +1,7 @@
 using DataGridView.App.UI;
 using DataGridView.Services;
 using DataGrisView.Services.Contracts;
+using DatabaseStorage;
 using Serilog;
 using Serilog.Extensions.Logging;
 
@@ -17,6 +18,7 @@ namespace DataGridView.App
         [STAThread]
         public static void Main()
         {
+            var storage = new CarDatabaseStorage();
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Seq("http://localhost:5341", apiKey: "vR8XqYtHT5QFjkPbx1VV")
@@ -26,7 +28,7 @@ namespace DataGridView.App
             var loggerFactory = new SerilogLoggerFactory(Log.Logger, dispose: true);
 
             ApplicationConfiguration.Initialize();
-            ICarService carService = new CarService(new Repository.InMemoryStorage(), loggerFactory);
+            ICarService carService = new CarService(storage, loggerFactory);
             Application.Run(new MainForm(carService));
         }
     }
