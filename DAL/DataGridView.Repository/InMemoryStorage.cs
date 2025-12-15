@@ -69,43 +69,43 @@ namespace DataGridView.Repository
             return Task.CompletedTask;
         }
 
-        /// <summary>
-        /// Получить общее количество автомобилей
-        /// </summary>
-        public Task<int> GetCarCount(CancellationToken cancellationToken)
-        {
-            return Task.FromResult(cars.Count);
-        }
+        ///// <summary>
+        ///// Получить общее количество автомобилей
+        ///// </summary>
+        //public Task<int> GetCarCount(CancellationToken cancellationToken)
+        //{
+        //    return Task.FromResult(cars.Count);
+        //}
 
-        /// <summary>
-        /// Получить количество автомобилей с критически низким уровнем запаса топлива   
-        /// </summary>
-        public Task<int> GetCarWithFuelVolume(CancellationToken cancellationToken)
-        {
-            return Task.FromResult(cars.Count(p => p.FuelVolume < 7));
-        }
+        ///// <summary>
+        ///// Получить количество автомобилей с критически низким уровнем запаса топлива   
+        ///// </summary>
+        //public Task<int> GetCarWithFuelVolume(CancellationToken cancellationToken)
+        //{
+        //    return Task.FromResult(cars.Count(p => p.FuelVolume < 7));
+        //}
 
-        /// <summary>
-        /// Получить запас хода топлива автомобиля
-        /// </summary>
-        public Task<double> GetFuelReserveHours(Guid id, CancellationToken cancellationToken)
-        {
-            var car = cars.FirstOrDefault(p => p.Id == id);
+        ///// <summary>
+        ///// Получить запас хода топлива автомобиля
+        ///// </summary>
+        //public Task<double> GetFuelReserveHours(Guid id, CancellationToken cancellationToken)
+        //{
+        //    var car = cars.FirstOrDefault(p => p.Id == id);
 
-            var fuelReserveHours = car!.FuelVolume / car.FuelConsumption;
-            return Task.FromResult(fuelReserveHours);
-        }
+        //    var fuelReserveHours = car!.FuelVolume / car.FuelConsumption;
+        //    return Task.FromResult(fuelReserveHours);
+        //}
 
-        /// <summary>
-        /// Сумма аренды автомобиля
-        /// </summary>
-        public Task<double> GetSumRent(Guid id, CancellationToken cancellationToken)
-        {
-            var car = cars.FirstOrDefault(p => p.Id == id);
+        ///// <summary>
+        ///// Сумма аренды автомобиля
+        ///// </summary>
+        //public Task<double> GetSumRent(Guid id, CancellationToken cancellationToken)
+        //{
+        //    var car = cars.FirstOrDefault(p => p.Id == id);
 
-            var fuelReserveHours = car!.FuelVolume / car.FuelConsumption;
-            var sumRent = fuelReserveHours * 60 * car.CostPerMinute;
-            return Task.FromResult(sumRent);
-        }
+        //    var fuelReserveHours = car!.FuelVolume / car.FuelConsumption;
+        //    var sumRent = fuelReserveHours * 60 * car.CostPerMinute;
+        //    return Task.FromResult(sumRent);
+        //}
     }
 }
