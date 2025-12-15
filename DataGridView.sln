@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.1.11304.174 d18.0
+VisualStudioVersion = 18.1.11304.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.App", "DataGridView\DataGridView.App.csproj", "{B6042A5B-59EC-43A1-B8A4-645DD102A9DF}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.Services.Tests", "BL\DataGridView.Services.Tests\DataGridView.Services.Tests.csproj", "{90C8780C-8833-46D4-B977-6D135178F026}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseStorage", "DatabaseStorage\DatabaseStorage.csproj", "{279D6337-DBB8-468A-A239-EA7F5E83A8C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.Web", "DataGridView.Web\DataGridView.Web.csproj", "{1A3D795B-76CB-463B-94B1-9DF09BB175EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{279D6337-DBB8-468A-A239-EA7F5E83A8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{279D6337-DBB8-468A-A239-EA7F5E83A8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{279D6337-DBB8-468A-A239-EA7F5E83A8C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3D795B-76CB-463B-94B1-9DF09BB175EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3D795B-76CB-463B-94B1-9DF09BB175EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3D795B-76CB-463B-94B1-9DF09BB175EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3D795B-76CB-463B-94B1-9DF09BB175EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

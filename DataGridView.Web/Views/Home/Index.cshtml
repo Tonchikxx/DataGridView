@@ -1,0 +1,145 @@
+﻿@using DataGridView.Entities.Models
+@using DataGridView.Web.Models
+
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Прокат автомобилей";
+}
+
+<h2>Прокат автомобилей</h2>
+
+<div style="margin-bottom: 10px;">
+    <a asp-action="Create" class="btn btn-outline-secondary">Добавить</a>
+    <span style="margin: 0 8px;"></span>
+    <a asp-action="Index" class="btn btn-outline-secondary">Обновить</a>
+</div>
+
+
+<div style="margin-top: 30px;">
+@if (Model.Cars != null && Model.Cars.Any())
+{
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Марка автомобиля</th>
+                        <th>Гос. номер</th>
+                        <th>Пробег</th>
+                        <th>Расход топлива</th>
+                        <th>Объём топлива</th>
+                        <th>Стоимсть аренды(за минуту)</th>
+                        <th>Запас хода топлива</th>
+                        <th>Сумма аренды</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var car in Model.Cars)
+                    {
+                        var fuelReserveHours = Math.Round(car.FuelVolume / car.FuelConsumption, 2);
+                        double rentAmount = Math.Round(fuelReserveHours * 60 * car.CostPerMinute, 2);
+
+                        <tr>
+                            <td>@car.CarName</td>
+                            <td>@car.GosNumber</td>
+                            <td>@car.Mileage</td>
+                            <td>@fuelReserveHours.ToString()</td>
+                            <td>@car.FuelVolume</td>
+                            <td>@car.CostPerMinute</td>
+                            <td>@car.FuelConsumption</td>
+                            <td>@rentAmount.ToString()</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Edit" asp-route-id="@car.Id"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="Редактировать">
+                                        <i class="bi bi-pencil"></i> Редактировать
+                                    </a>
+                                    <span style="margin: 0 8px;"></span>
+                                    <a asp-action="Delete" asp-route-id="@car.Id"
+                                       class="btn btn-sm btn-outline-danger"
+                                       title="Удалить">
+                                        <i class="bi bi-trash"></i> Удалить
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+}
+else
+{
+        <div class="alert alert-info" role="alert">
+            Автомобилей нет. Нажмите "Добавить", чтобы добавить первый автомобиль.
+        </div>
+}
+</div>
+
+<div>
+        <div style="margin-top: 30px;">
+
+            @if (Model.Statistics != null)
+            {
+                <div class="statistics-card" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #dee2e6;">
+                    <h4>Статистика проката</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stat-item">
+                                <span class="stat-label">Количество автомобилей:</span>
+                                <span class="stat-value">@Model.Statistics.GetCarCount</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-item">
+                                <span class="stat-label">Количество автомобилей с критически низким уровнем запаса хода:</span>
+                                <span class="stat-value">@Model.Statistics.GetCarWithFuelVolume.ToString()</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <style>
+            .stat-item {
+                padding: 10px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .stat-label {
+                display: block;
+                font-size: 0.9rem;
+                color: #6c757d;
+            }
+
+            .stat-value {
+                display: block;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #212529;
+            }
+
+            .badge {
+                font-size: 0.8em;
+                padding: 0.4em 0.8em;
+            }
+
+            .btn-group {
+                gap: 5px;
+            }
+
+            .table th {
+                background-color: #343a40;
+                color: white;
+                vertical-align: middle;
+            }
+
+            .table td {
+                vertical-align: middle;
+            }
+        </style>
+</div>
