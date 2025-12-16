@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace DataGridView.Web.Controllers
 {
     /// <summary>
-    /// Контроллер для управления проактом автомобилей
+    /// РљРѕРЅС‚СЂРѕР»Р»РµСЂ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ РїСЂРѕР°РєС‚РѕРј Р°РІС‚РѕРјРѕР±РёР»РµР№
     /// </summary>
     public class HomeController(ICarService car) : Controller
     {
         private ICarService Service { get; set; } = car;
 
         /// <summary>
-        /// Отображает главную страницу со списком всех автомобилей и статистикой
+        /// РћС‚РѕР±СЂР°Р¶Р°РµС‚ РіР»Р°РІРЅСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ СЃРѕ СЃРїРёСЃРєРѕРј РІСЃРµС… Р°РІС‚РѕРјРѕР±РёР»РµР№ Рё СЃС‚Р°С‚РёСЃС‚РёРєРѕР№
         /// </summary>
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
@@ -31,7 +31,7 @@ namespace DataGridView.Web.Controllers
         }
 
         /// <summary>
-        /// Отображает форму для создания нового автомобиля
+        /// РћС‚РѕР±СЂР°Р¶Р°РµС‚ С„РѕСЂРјСѓ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕРіРѕ Р°РІС‚РѕРјРѕР±РёР»СЏ
         /// </summary>
 
         [HttpGet]
@@ -41,7 +41,7 @@ namespace DataGridView.Web.Controllers
         }
 
         /// <summary>
-        /// Обрабатывает отправку формы создания нового автомобиля
+        /// РћР±СЂР°Р±Р°С‚С‹РІР°РµС‚ РѕС‚РїСЂР°РІРєСѓ С„РѕСЂРјС‹ СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕРіРѕ Р°РІС‚РѕРјРѕР±РёР»СЏ
         /// </summary>
 
         [HttpPost]
@@ -68,7 +68,7 @@ namespace DataGridView.Web.Controllers
         }
 
         /// <summary>
-        /// Отображает форму для редактирования существующего автомобиля по его идентификатору
+        /// РћС‚РѕР±СЂР°Р¶Р°РµС‚ С„РѕСЂРјСѓ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ Р°РІС‚РѕРјРѕР±РёР»СЏ РїРѕ РµРіРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ
         /// </summary>
 
         [HttpGet]
@@ -97,7 +97,7 @@ namespace DataGridView.Web.Controllers
         }
 
         /// <summary>
-        /// Обрабатывает отправку формы редактирования автомобиля
+        /// РћР±СЂР°Р±Р°С‚С‹РІР°РµС‚ РѕС‚РїСЂР°РІРєСѓ С„РѕСЂРјС‹ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ Р°РІС‚РѕРјРѕР±РёР»СЏ
         /// </summary>
         [HttpPost]
         public async Task<IActionResult> Edit(CarEditViewModel carEditViewModel, CancellationToken cancellationToken)
@@ -127,7 +127,7 @@ namespace DataGridView.Web.Controllers
         }
 
         /// <summary>
-        /// Отображает страницу подтверждения удаления автомобиля
+        /// РћС‚РѕР±СЂР°Р¶Р°РµС‚ СЃС‚СЂР°РЅРёС†Сѓ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ СѓРґР°Р»РµРЅРёСЏ Р°РІС‚РѕРјРѕР±РёР»СЏ
         /// </summary>
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
@@ -144,7 +144,7 @@ namespace DataGridView.Web.Controllers
         }
 
         /// <summary>
-        /// Выполняет удаление автомобиля после подтверждения
+        /// Р’С‹РїРѕР»РЅСЏРµС‚ СѓРґР°Р»РµРЅРёРµ Р°РІС‚РѕРјРѕР±РёР»СЏ РїРѕСЃР»Рµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ
         /// </summary>
         [HttpPost]
         [ActionName("Delete")]
@@ -164,7 +164,7 @@ namespace DataGridView.Web.Controllers
         }
 
         /// <summary>
-        /// Отображает страницу "Политика конфиденциальности".
+        /// РћС‚РѕР±СЂР°Р¶Р°РµС‚ СЃС‚СЂР°РЅРёС†Сѓ "РџРѕР»РёС‚РёРєР° РєРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚Рё".
         /// </summary>
         public IActionResult Privacy()
         {
@@ -172,7 +172,7 @@ namespace DataGridView.Web.Controllers
         }
 
         /// <summary>
-        /// Отображает страницу ошибки с информацией о текущем запросе.
+        /// РћС‚РѕР±СЂР°Р¶Р°РµС‚ СЃС‚СЂР°РЅРёС†Сѓ РѕС€РёР±РєРё СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ С‚РµРєСѓС‰РµРј Р·Р°РїСЂРѕСЃРµ.
         /// </summary>
         public IActionResult Error()
         {
