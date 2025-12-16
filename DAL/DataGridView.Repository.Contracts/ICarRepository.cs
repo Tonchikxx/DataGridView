@@ -10,7 +10,7 @@ namespace DataGridView.Repository.Contracts
         /// <summary>
         /// Получить все товары
         /// </summary>
-        public Task<IEnumerable<CarModel>> GetAllCars();
+        public Task<IEnumerable<CarModel>> GetAllCars(CancellationToken cancellationToken);
 
         /// <summary>
         /// Добавить новый автомобиль

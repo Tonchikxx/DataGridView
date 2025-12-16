@@ -17,10 +17,10 @@ namespace DataGridView.Services
         /// <summary>
         /// Получить все автомобили
         /// </summary>
-        public async Task<IEnumerable<CarModel>> GetAllCars()
+        public async Task<IEnumerable<CarModel>> GetAllCars(CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
-            var res = await storage.GetAllCars();   
+            var res = await storage.GetAllCars(cancellationToken);   
             sw.Stop();
             logger.LogDebug("CarService.GetAllCars выполнен за {ms} мс", sw.ElapsedMilliseconds);
             return res;
@@ -62,13 +62,13 @@ namespace DataGridView.Services
         /// <summary>
         /// Рассчитывает статистику по всем автомобилям в системе проката
         /// </summary>
-        public async Task<CarStatistics> GetStatistics()
+        public async Task<CarStatistics> GetStatistics(CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
             try
             {
                 logger?.LogDebug("Расчет статистики по автомобилям");
-                var cars = await storage.GetAllCars();
+                var cars = await storage.GetAllCars(cancellationToken);
 
                 var statistics = new CarStatistics
                 {

@@ -21,7 +21,7 @@ namespace DataGridView.Repository
         /// <summary>
         /// Получить все автомобили
         /// </summary>
-        public Task<IEnumerable<CarModel>> GetAllCars()
+        public Task<IEnumerable<CarModel>> GetAllCars(CancellationToken cancellationToken)
         {
             return Task.FromResult<IEnumerable<CarModel>>(cars);
         }

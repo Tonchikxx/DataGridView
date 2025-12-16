@@ -10,7 +10,7 @@ namespace DataGrisView.Services.Contracts
         /// <summary>
         /// Получить все товары
         /// </summary>
-        public Task<IEnumerable<CarModel>> GetAllCars();
+        public Task<IEnumerable<CarModel>> GetAllCars(CancellationToken cancellationToken);
 
         /// <summary>
         /// Добавить новый автомобиль
@@ -30,7 +30,7 @@ namespace DataGrisView.Services.Contracts
         /// <summary>
         /// Получить статистику по автомобилям в прокате
         /// </summary>
-        public Task<CarStatistics> GetStatistics();
+        public Task<CarStatistics> GetStatistics(CancellationToken cancellationToken);
 
     }
 }

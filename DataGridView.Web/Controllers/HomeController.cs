@@ -16,10 +16,10 @@ namespace DataGridView.Web.Controllers
         /// <summary>
         /// ќтображает главную страницу со списком всех автомобилей и статистикой
         /// </summary>
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var cars = await Service.GetAllCars();
-            var statistics = await Service.GetStatistics();
+            var cars = await Service.GetAllCars(cancellationToken);
+            var statistics = await Service.GetStatistics(cancellationToken);
 
             var viewModel = new IndexViewModel
             {
@@ -45,7 +45,7 @@ namespace DataGridView.Web.Controllers
         /// </summary>
 
         [HttpPost]
-        public async Task<IActionResult> Create(CarEditViewModel carEditViewModel)
+        public async Task<IActionResult> Create(CarEditViewModel carEditViewModel, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace DataGridView.Web.Controllers
                 CostPerMinute = carEditViewModel.CostPerMinute
             };
 
-            await Service.AddCar(car, CancellationToken.None);
+            await Service.AddCar(car, cancellationToken);
             return RedirectToAction(nameof(Index));
         }
 
@@ -72,9 +72,9 @@ namespace DataGridView.Web.Controllers
         /// </summary>
 
         [HttpGet]
-        public async Task<IActionResult> Edit(Guid id) 
+        public async Task<IActionResult> Edit(Guid id, CancellationToken cancellationToken) 
         {
-            var cars = await Service.GetAllCars();
+            var cars = await Service.GetAllCars(cancellationToken);
             var car = cars.FirstOrDefault(p => p.Id == id); 
 
             if (car == null)
@@ -100,14 +100,14 @@ namespace DataGridView.Web.Controllers
         /// ќбрабатывает отправку формы редактировани€ автомобил€
         /// </summary>
         [HttpPost]
-        public async Task<IActionResult> Edit(CarEditViewModel carEditViewModel)
+        public async Task<IActionResult> Edit(CarEditViewModel carEditViewModel, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)
             {
                 return View(carEditViewModel);
             }
 
-            var cars = await Service.GetAllCars();
+            var cars = await Service.GetAllCars(cancellationToken);
             var car = cars.FirstOrDefault(p => p.Id == carEditViewModel.Id);
 
             if (car == null)
@@ -122,7 +122,7 @@ namespace DataGridView.Web.Controllers
             car.FuelVolume = carEditViewModel.FuelVolume;
             car.CostPerMinute = carEditViewModel.CostPerMinute;
 
-            await Service.UpdateCar(car, CancellationToken.None);
+            await Service.UpdateCar(car, cancellationToken);
             return RedirectToAction(nameof(Index));
         }
 
@@ -130,9 +130,9 @@ namespace DataGridView.Web.Controllers
         /// ќтображает страницу подтверждени€ удалени€ автомобил€
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            var cars = await Service.GetAllCars();
+            var cars = await Service.GetAllCars(cancellationToken);
             var car = cars.FirstOrDefault(p => p.Id == id);
 
             if (car == null)
@@ -149,9 +149,9 @@ namespace DataGridView.Web.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id, CancellationToken cancellationToken)
         {
-            var cars = await Service.GetAllCars();
+            var cars = await Service.GetAllCars(cancellationToken);
             var car = cars.FirstOrDefault(p => p.Id == id);
 
             if (car == null)
@@ -159,7 +159,7 @@ namespace DataGridView.Web.Controllers
                 return NotFound();
             }
 
-            await Service.DeleteCar(car.Id, CancellationToken.None);
+            await Service.DeleteCar(car.Id, cancellationToken);
             return RedirectToAction(nameof(Index));
         }
 
