@@ -86,8 +86,6 @@ namespace DataGridView.Services
                 var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
                 logger?.LogDebug("CarService.GetStatistics выполнен за {ms:F6} мс", sw.ElapsedMilliseconds);
             }
-
-
         }
     }
 }
