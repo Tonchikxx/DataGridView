@@ -74,55 +74,14 @@ namespace DataGridView.Services.Tests
                 new (),
             };
             mock
-                .Setup(x => x.GetAllCars())
+                .Setup(x => x.GetAllCars(CancellationToken.None))
             .ReturnsAsync(list);
 
             // Act
-            var res = await service.GetAllCars();
+            var res = await service.GetAllCars(CancellationToken.None);
 
             // Assert
             res.Should().BeSameAs(list);
-        }
-
-        /// <summary>
-        /// Проверка корректности подсчёта общего количества автомобилей
-        /// </summary>
-        [Fact]
-        public async Task GetCarCountShouldReturnCorrectData()
-        {
-            // Arrange
-            mock
-                .Setup(s => s.GetCarCount(CancellationToken.None))
-                .ReturnsAsync(3);
-
-            // Act
-            var result = await service.GetCarCount(CancellationToken.None);
-
-            // Assert
-            result.Should().Be(3);
-
-            mock.Verify(x => x.GetCarCount(CancellationToken.None), Times.Once);
-        }
-
-        /// <summary>
-        /// Проверяет, что сервис корректно вычисляет количество автомобилей с критически низким запасом топлива
-        /// </summary>
-        [Fact]
-        public async Task GetCarWithFuelVolumeShouldReturnCorrectCount()
-        {
-            // Arrange
-            int expectedCount = 1;
-            mock
-                .Setup(x => x.GetCarWithFuelVolume(CancellationToken.None))
-                .ReturnsAsync(expectedCount);
-
-            // Act
-            var result = await service.GetCarWithFuelVolume(CancellationToken.None);
-
-            // Assert
-            result.Should().Be(expectedCount);
-
-            mock.Verify(x => x.GetCarWithFuelVolume(CancellationToken.None), Times.Once);
         }
 
         /// <summary>
@@ -159,47 +118,49 @@ namespace DataGridView.Services.Tests
         }
 
         /// <summary>
-        /// Проверяет, что сервис корректно возвращает запас хода для существующего автомобиля
+        /// Проверка расчета статистики 
         /// </summary>
         [Fact]
-        public async Task GetFuelReserveHoursShouldReturnCorrectValue()
+        public async Task GetStatisticsShouldReturnCorrectStatistics()
         {
             // Arrange
-            var carId = Guid.NewGuid();
-            double expectedFuelReserve = 5.0; 
+            var cars = new List<CarModel>
+            {
+                new CarModel
+                {
+                    Id = Guid.NewGuid(),
+                    FuelVolume = 15, 
+                    CostPerMinute = 5.5,
+                    Mileage = 10000
+                },
+                new CarModel
+                {
+                    Id = Guid.NewGuid(),
+                    FuelVolume = 5, 
+                    CostPerMinute = 7.2,
+                    Mileage = 25000
+                },
+                new CarModel
+                {
+                    Id = Guid.NewGuid(),
+                    FuelVolume = 8, 
+                    CostPerMinute = 6.0,
+                    Mileage = 15000
+                }
+            };
 
-            mock
-                .Setup(x => x.GetFuelReserveHours(carId, CancellationToken.None))
-                .ReturnsAsync(expectedFuelReserve);
+            mock.Setup(x => x.GetAllCars(CancellationToken.None))
+                .ReturnsAsync(cars);
 
             // Act
-            var result = await service.GetFuelReserveHours(carId, CancellationToken.None);
+            var result = await service.GetStatistics(CancellationToken.None);
 
             // Assert
-            result.Should().Be(expectedFuelReserve);
-            mock.Verify(x => x.GetFuelReserveHours(carId, CancellationToken.None), Times.Once);
-        }
-
-        /// <summary>
-        /// Проверяет, что сервис корректно возвращает сумму аренды для существующего автомобиля
-        /// </summary>
-        [Fact]
-        public async Task GetSumRentShouldReturnCorrectValue()
-        {
-            // Arrange
-            var carId = Guid.NewGuid();
-            double expectedSumRent = 3000.0; 
-
-            mock
-                .Setup(x => x.GetSumRent(carId, CancellationToken.None))
-                .ReturnsAsync(expectedSumRent);
-
-            // Act
-            var result = await service.GetSumRent(carId, CancellationToken.None);
-
-            // Assert
-            result.Should().Be(expectedSumRent);
-            mock.Verify(x => x.GetSumRent(carId, CancellationToken.None), Times.Once);
+            result.Should().NotBeNull();
+            result.GetCarCount.Should().Be(3);
+            result.GetCarWithFuelVolume.Should().Be(1); 
+            result.GetFuelReserveHours.Should().BeApproximately(18.7, 0.01); 
+            result.GetSumRent.Should().BeApproximately(16666.67, 0.01); 
         }
     }
 }

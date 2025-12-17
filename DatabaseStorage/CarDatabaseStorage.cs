@@ -12,10 +12,10 @@ namespace DatabaseStorage
         /// <summary>
         /// Получить все автомобили из базы данных
         /// </summary>
-        public async Task<IEnumerable<CarModel>> GetAllCars()
+        public async Task<IEnumerable<CarModel>> GetAllCars(CancellationToken cancellationToken)
         {
             using var database = new CarDatabaseContext();
-            var cars = await database.Cars.AsNoTracking().ToListAsync();
+            var cars = await database.Cars.AsNoTracking().ToListAsync(cancellationToken);
             return cars;
         }
 

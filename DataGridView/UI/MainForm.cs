@@ -25,7 +25,7 @@ namespace DataGridView.App.UI
         private async Task InitializeDataAsync()
         {
             // Проверяем, есть ли уже данные в сервисе
-            var existingCars = await carService.GetAllCars();
+            var existingCars = await carService.GetAllCars(CancellationToken.None);
             if (!existingCars.Any())
             {
                 // Добавляем тестовые данные в сервис
@@ -77,14 +77,14 @@ namespace DataGridView.App.UI
         private async Task LoadData()
         {
             await InitializeDataAsync();
-            var cars = await carService.GetAllCars();
+            var cars = await carService.GetAllCars(CancellationToken.None);
             bindingSource.DataSource = cars.ToList();
             await SetStatistic();
         }
 
         private async Task OnUpdate()
         {
-            var cars = await carService.GetAllCars();
+            var cars = await carService.GetAllCars(CancellationToken.None);
             bindingSource.DataSource = cars.ToList();
             bindingSource.ResetBindings(false);
             await SetStatistic();
@@ -92,7 +92,7 @@ namespace DataGridView.App.UI
 
         private async Task SetStatistic()
         {
-            var statistics = await carService.GetStatistics();
+            var statistics = await carService.GetStatistics(CancellationToken.None);
 
             toolStripStatusLabelLowAmount.Text = $"Автомобили с критически низким уровнем запаса хода: {statistics.GetCarWithFuelVolume}";
             toolStripStatusLabelAmount.Text = $"Количество автомобилей: {statistics.GetCarCount}";
@@ -208,7 +208,7 @@ namespace DataGridView.App.UI
 
         private async void toolStripButtonUpdate_Click(object sender, EventArgs e)
         {
-            bindingSource.DataSource = await carService.GetAllCars();
+            bindingSource.DataSource = await carService.GetAllCars(CancellationToken.None);
             bindingSource.ResetBindings(false);
             await SetStatistic();
         }

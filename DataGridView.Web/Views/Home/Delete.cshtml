@@ -1,0 +1,60 @@
+﻿@model DataGridView.Entities.Models.CarModel
+
+@{
+    ViewData["Title"] = "Удалить автомобиль";
+}
+
+<h2 class="text-center mb-4">Удалить автомобиль</h2>
+
+<div class="alert alert-warning" role="alert">
+    <h4>Вы уверены, что хотите удалить этот автомобиль?</h4>
+    <p>Это действие нельзя отменить.</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4>Информация об автомобиле</h4>
+                <hr />
+
+                <dl class="row">
+                    <dt class="col-sm-4">Марка машины:</dt>
+                    <dd class="col-sm-8">@Model.CarName</dd>
+
+                    <dt class="col-sm-4">Гос. номер:</dt>
+                    <dd class="col-sm-8">@Model.GosNumber</dd>
+
+                    <dt class="col-sm-4">Пробег:</dt>
+                    <dd class="col-sm-8">@Model.Mileage</dd>
+
+                    <dt class="col-sm-4">Расход топлива:</dt>
+                    <dd class="col-sm-8">@((Model.FuelVolume / Model.FuelConsumption).ToString())</dd>
+
+                    <dt class="col-sm-4">Объём топлива:</dt>
+                    <dd class="col-sm-8">@Model.FuelVolume</dd>
+
+                    <dt class="col-sm-4">Стоимсть аренды(за минуту):</dt>
+                    <dd class="col-sm-8">@(Model.CostPerMinute)</dd>
+
+                    <dt class="col-sm-4">Запас хода топлива:</dt>
+                    <dd class="col-sm-8">@Model.FuelConsumption.ToString()</dd>
+
+                    <dt class="col-sm-4">Сумма аренды:</dt>
+                    <dd class="col-sm-8">@((Model.FuelVolume / Model.FuelConsumption * 60 * Model.CostPerMinute).ToString())</dd>
+                </dl>
+
+                <form asp-action="Delete" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                        <span style="margin: 0 8px;"></span>
+                        <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
